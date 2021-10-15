@@ -10,8 +10,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "course")
-public class Course {
+@Table(name = "class_info")
+public class ClassInfo {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,7 +35,7 @@ public class Course {
 	@Column(name = "link")
 	private String link;
 	
-	@Column(name = "description")
+	@Column(name = "description", length = 1000)
 	private String description;
 	
 	@ManyToOne

@@ -11,24 +11,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.spring.service.common.Constants;
-import com.spring.service.model.Course;
-import com.spring.service.repo.CourseRepo;
+import com.spring.service.model.ClassInfo;
+import com.spring.service.repo.ClassInfoRepo;
 
 @CrossOrigin(Constants.CROSS_ORIGIN)
 @RestController
-@RequestMapping(Constants.API_URL + "course")
-public class CourseController {
+@RequestMapping(Constants.API_URL + "classInfo")
+public class ClassInfoController {
 	
 	@Autowired
-	private CourseRepo courseRepo;
+	private ClassInfoRepo courseRepo;
 	
 	@GetMapping("getAll")
-	public List<Course> getAll(){
+	public List<ClassInfo> getAll(){
 		return courseRepo.findAll();
 	}
 	
 	@GetMapping("getOneById/{id}")
-	public Optional<Course> getOneById(@PathVariable Long id){
+	public Optional<ClassInfo> getOneById(@PathVariable Long id){
 		return courseRepo.findById(id);
 	}
 }
