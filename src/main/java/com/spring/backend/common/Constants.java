@@ -1,4 +1,4 @@
-package com.spring.service.common;
+package com.spring.backend.common;
 
 public class Constants {
 	public static final String API_URL = "api/hoctructuyen/";

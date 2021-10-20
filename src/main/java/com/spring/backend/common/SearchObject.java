@@ -1,4 +1,4 @@
-package com.spring.service.common;
+package com.spring.backend.common;
 
 import java.util.List;
 

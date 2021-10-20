@@ -1,4 +1,4 @@
-package com.spring.service.dao;
+package com.spring.backend.dao;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,8 +15,8 @@ import javax.persistence.criteria.Root;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.spring.service.common.SearchObject;
-import com.spring.service.model.ClassInfo;
+import com.spring.backend.common.SearchObject;
+import com.spring.backend.model.ClassInfo;
 
 @Repository(value = "classInfoDAO")
 @Transactional(rollbackFor = Exception.class)

@@ -1,4 +1,4 @@
-package com.spring.service.service;
+package com.spring.backend.service;
 
 import java.util.List;
 
@@ -6,9 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.spring.service.common.SearchObject;
-import com.spring.service.dao.ClassInfoDAO;
-import com.spring.service.model.ClassInfo;
+import com.spring.backend.common.SearchObject;
+import com.spring.backend.dao.ClassInfoDAO;
+import com.spring.backend.model.ClassInfo;
 
 @Service
 @Transactional
