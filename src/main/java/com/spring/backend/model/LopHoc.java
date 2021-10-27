@@ -18,13 +18,60 @@ public class LopHoc {
 	private Long malophoc;
 	
 	@Column (name = "ky")
-	private String ky;
+	private int ky;
+	
+	@Column (name = "namhoc")
+	private int namHoc;
 	
 	@Column (name = "tenlophoc")
 	private String tenLopHoc;
 	
-	@Column (name = "lichhoc")
-	private String lichHoc;
+	@Column(name = "ngayhoc")
+	private int ngayHoc;
+	
+	public int getNgayHoc() {
+		return ngayHoc;
+	}
+
+	public void setNgayHoc(int ngayHoc) {
+		this.ngayHoc = ngayHoc;
+	}
+
+	public int getThoiGianBatDau() {
+		return thoiGianBatDau;
+	}
+
+	public void setThoiGianBatDau(int thoiGianBatDau) {
+		this.thoiGianBatDau = thoiGianBatDau;
+	}
+
+	public int getThoiGianKetThuc() {
+		return thoiGianKetThuc;
+	}
+
+	public void setThoiGianKetThuc(int thoiGianKetThuc) {
+		this.thoiGianKetThuc = thoiGianKetThuc;
+	}
+
+	public String getMoTa() {
+		return moTa;
+	}
+
+	public void setMoTa(String moTa) {
+		this.moTa = moTa;
+	}
+
+	@Column(name = "thoigianbatdau")
+	private int thoiGianBatDau;
+	
+	@Column(name = "thoigianketthuc")
+	private int thoiGianKetThuc;
+	
+	@Column(name = "link")
+	private String link;
+	
+	@Column(name = "mota", length = 1000)
+	private String moTa;
 	
 	@ManyToOne
 	@JoinColumn (name = "magiaovien")
@@ -43,12 +90,28 @@ public class LopHoc {
 		this.malophoc = malophoc;
 	}
 
-	public String getKy() {
+	public int getKy() {
 		return ky;
 	}
 
-	public void setKy(String ky) {
+	public void setKy(int ky) {
 		this.ky = ky;
+	}
+
+	public int getNamHoc() {
+		return namHoc;
+	}
+
+	public void setNamHoc(int namHoc) {
+		this.namHoc = namHoc;
+	}
+
+	public String getLink() {
+		return link;
+	}
+
+	public void setLink(String link) {
+		this.link = link;
 	}
 
 	public String getTenLopHoc() {
@@ -57,14 +120,6 @@ public class LopHoc {
 
 	public void setTenLopHoc(String tenLopHoc) {
 		this.tenLopHoc = tenLopHoc;
-	}
-
-	public String getLichHoc() {
-		return lichHoc;
-	}
-
-	public void setLichHoc(String lichHoc) {
-		this.lichHoc = lichHoc;
 	}
 
 	public GiaoVien getGv() {
@@ -82,5 +137,4 @@ public class LopHoc {
 	public void setMhp(HocPhan mhp) {
 		this.mhp = mhp;
 	}
-	
 }

@@ -27,7 +27,6 @@ public class GiaoVien {
 	@Column(name = "pass")
 	private String password;
 
-
 	public Long getMagiaovien() {
 		return magiaovien;
 	}
