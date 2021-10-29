@@ -1,5 +1,6 @@
 package com.spring.backend.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -14,30 +15,39 @@ public class ChiTietLopHoc {
 	@EmbeddedId
 	private SinhVienLopHocKey id;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@MapsId("malophoc")
 	@JoinColumn (name = "malophoc")
-	private LopHoc mlh;
+	private LopHoc lophoc;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@MapsId("masinhvien")
 	@JoinColumn (name = "masinhvien")
-	private SinhVien msv;
+	private SinhVien sinhvien;
 
-	public LopHoc getMlh() {
-		return mlh;
+	public SinhVienLopHocKey getId() {
+		return id;
 	}
 
-	public void setMlh(LopHoc mlh) {
-		this.mlh = mlh;
+	public void setId(SinhVienLopHocKey id) {
+		this.id = id;
 	}
 
-	public SinhVien getMsv() {
-		return msv;
+	public LopHoc getLophoc() {
+		return lophoc;
 	}
 
-	public void setMsv(SinhVien msv) {
-		this.msv = msv;
+	public void setLophoc(LopHoc lophoc) {
+		this.lophoc = lophoc;
 	}
+
+	public SinhVien getSinhvien() {
+		return sinhvien;
+	}
+
+	public void setSinhvien(SinhVien sinhvien) {
+		this.sinhvien = sinhvien;
+	}
+
 	
 }

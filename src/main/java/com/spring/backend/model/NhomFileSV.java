@@ -2,6 +2,7 @@ package com.spring.backend.model;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table (name = "nhomfilesv")
@@ -21,16 +24,17 @@ public class NhomFileSV {
 	private Long idnhomfile;
 	
 	@Column (name = "lansuacuoi")
+	@Temporal(value = TemporalType.TIMESTAMP)
 	private Date lanSuaCuoi;
 	
 	@Column (name = "diem")
 	private double diem;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn (name = "masv")
 	private SinhVien msv;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn (name = "maquatrinh")
 	private QuaTrinhHoc mqt;
 

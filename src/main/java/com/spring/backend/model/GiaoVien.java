@@ -1,10 +1,14 @@
 package com.spring.backend.model;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -26,6 +30,17 @@ public class GiaoVien {
 	
 	@Column(name = "pass")
 	private String password;
+	
+	@OneToMany (mappedBy="gv", cascade = CascadeType.ALL)
+	private Set<FileGiaoVien> filegiaovien;
+
+	public Set<FileGiaoVien> getFilegiaovien() {
+		return filegiaovien;
+	}
+
+	public void setFilegiaovien(Set<FileGiaoVien> filegiaovien) {
+		this.filegiaovien = filegiaovien;
+	}
 
 	public Long getMagiaovien() {
 		return magiaovien;

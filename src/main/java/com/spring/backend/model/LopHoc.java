@@ -1,5 +1,6 @@
 package com.spring.backend.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -28,6 +29,26 @@ public class LopHoc {
 	
 	@Column(name = "ngayhoc")
 	private int ngayHoc;
+	
+	@Column(name = "thoigianbatdau")
+	private int thoiGianBatDau;
+	
+	@Column(name = "thoigianketthuc")
+	private int thoiGianKetThuc;
+	
+	@Column(name = "link")
+	private String link;
+	
+	@Column(name = "mota", length = 1000)
+	private String moTa;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn (name = "magiaovien")
+	private GiaoVien gv;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn (name = "mahocphan")
+	private HocPhan mhp;	
 	
 	public int getNgayHoc() {
 		return ngayHoc;
@@ -60,27 +81,6 @@ public class LopHoc {
 	public void setMoTa(String moTa) {
 		this.moTa = moTa;
 	}
-
-	@Column(name = "thoigianbatdau")
-	private int thoiGianBatDau;
-	
-	@Column(name = "thoigianketthuc")
-	private int thoiGianKetThuc;
-	
-	@Column(name = "link")
-	private String link;
-	
-	@Column(name = "mota", length = 1000)
-	private String moTa;
-	
-	@ManyToOne
-	@JoinColumn (name = "magiaovien")
-	private GiaoVien gv;
-	
-	@ManyToOne
-	@JoinColumn (name = "mahocphan")
-	private HocPhan mhp;
-
 
 	public Long getMalophoc() {
 		return malophoc;

@@ -24,11 +24,11 @@ public class QuaTrinhHocController {
 
 	@Autowired
 	private QuaTrinhHocService qthService;
-	
-	@PostMapping("getAll")
-	public List<QuaTrinhHoc> getAll(@RequestBody SearchObject search){
-		return qthService.findAll(search);
-	}
+//	
+//	@PostMapping("getAll")
+//	public List<QuaTrinhHoc> getAll(@RequestBody SearchObject search){
+//		return qthService.findAll(search);
+//	}
 	
 	@GetMapping("getOneById/{id}")
 	public QuaTrinhHoc getOneById(@PathVariable Long id){
