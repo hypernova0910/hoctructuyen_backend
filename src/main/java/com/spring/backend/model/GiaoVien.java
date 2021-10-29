@@ -31,17 +31,17 @@ public class GiaoVien {
 	@Column(name = "pass")
 	private String password;
 	
-	@OneToMany (mappedBy="gv", cascade = CascadeType.ALL)
-	private Set<FileGiaoVien> filegiaovien;
-
-	public Set<FileGiaoVien> getFilegiaovien() {
-		return filegiaovien;
-	}
-
-	public void setFilegiaovien(Set<FileGiaoVien> filegiaovien) {
-		this.filegiaovien = filegiaovien;
-	}
-
+//	@OneToMany (mappedBy="gv", cascade = CascadeType.ALL)
+//	private Set<FileGiaoVien> filegiaovien;
+//
+//	public Set<FileGiaoVien> getFilegiaovien() {
+//		return filegiaovien;
+//	}
+//
+//	public void setFilegiaovien(Set<FileGiaoVien> filegiaovien) {
+//		this.filegiaovien = filegiaovien;
+//	}
+//
 	public Long getMagiaovien() {
 		return magiaovien;
 	}

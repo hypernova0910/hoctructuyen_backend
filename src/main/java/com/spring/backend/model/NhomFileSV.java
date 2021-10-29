@@ -31,12 +31,12 @@ public class NhomFileSV {
 	private double diem;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn (name = "masv")
-	private SinhVien msv;
+	@JoinColumn (name = "masinhvien")
+	private SinhVien sinhVien;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn (name = "maquatrinh")
-	private QuaTrinhHoc mqt;
+	private QuaTrinhHoc quaTrinhHoc;
 
 
 	public Long getIdnhomfile() {
@@ -63,20 +63,19 @@ public class NhomFileSV {
 		this.diem = diem;
 	}
 
-	public SinhVien getMsv() {
-		return msv;
+	public SinhVien getSinhVien() {
+		return sinhVien;
 	}
 
-	public void setMsv(SinhVien msv) {
-		this.msv = msv;
+	public void setSinhVien(SinhVien sinhVien) {
+		this.sinhVien = sinhVien;
 	}
 
-	public QuaTrinhHoc getMqt() {
-		return mqt;
+	public QuaTrinhHoc getQuaTrinhHoc() {
+		return quaTrinhHoc;
 	}
 
-	public void setMqt(QuaTrinhHoc mqt) {
-		this.mqt = mqt;
+	public void setQuaTrinhHoc(QuaTrinhHoc quaTrinhHoc) {
+		this.quaTrinhHoc = quaTrinhHoc;
 	}
-	
 }

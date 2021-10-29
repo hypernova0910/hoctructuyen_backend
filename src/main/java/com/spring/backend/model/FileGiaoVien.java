@@ -34,11 +34,11 @@ public class FileGiaoVien {
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "magiaovien")
-	private GiaoVien gv;
+	private GiaoVien giaoVien;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "maquatrinh")
-	private QuaTrinhHoc qth;
+	private QuaTrinhHoc quaTrinhHoc;
 
 	public Long getIdfilegv() {
 		return idfilegv;
@@ -72,19 +72,19 @@ public class FileGiaoVien {
 		this.thoiGianGui = thoiGianGui;
 	}
 
-	public GiaoVien getGv() {
-		return gv;
+	public GiaoVien getGiaoVien() {
+		return giaoVien;
 	}
 
-	public void setGv(GiaoVien gv) {
-		this.gv = gv;
+	public void setGiaoVien(GiaoVien giaoVien) {
+		this.giaoVien = giaoVien;
 	}
 
-	public QuaTrinhHoc getQth() {
-		return qth;
+	public QuaTrinhHoc getQuaTrinhHoc() {
+		return quaTrinhHoc;
 	}
 
-	public void setQth(QuaTrinhHoc qth) {
-		this.qth = qth;
+	public void setQuaTrinhHoc(QuaTrinhHoc quaTrinhHoc) {
+		this.quaTrinhHoc = quaTrinhHoc;
 	}
 }

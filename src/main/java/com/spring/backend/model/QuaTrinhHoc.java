@@ -39,7 +39,7 @@ public class QuaTrinhHoc {
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "malophoc")
-	private LopHoc lh;
+	private LopHoc lopHoc;
 
 	public Long getMaquatrinh() {
 		return maquatrinh;
@@ -81,11 +81,12 @@ public class QuaTrinhHoc {
 		this.thoiGianNop = thoiGianNop;
 	}
 
-	public LopHoc getLh() {
-		return lh;
+	public LopHoc getLopHoc() {
+		return lopHoc;
 	}
 
-	public void setLh(LopHoc lh) {
-		this.lh = lh;
+	public void setLopHoc(LopHoc lopHoc) {
+		this.lopHoc = lopHoc;
 	}
+	
 }

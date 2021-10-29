@@ -44,11 +44,11 @@ public class LopHoc {
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn (name = "magiaovien")
-	private GiaoVien gv;
+	private GiaoVien giaoVien;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn (name = "mahocphan")
-	private HocPhan mhp;	
+	private HocPhan hocPhan;	
 	
 	public int getNgayHoc() {
 		return ngayHoc;
@@ -122,19 +122,20 @@ public class LopHoc {
 		this.tenLopHoc = tenLopHoc;
 	}
 
-	public GiaoVien getGv() {
-		return gv;
+	public GiaoVien getGiaoVien() {
+		return giaoVien;
 	}
 
-	public void setGv(GiaoVien gv) {
-		this.gv = gv;
+	public void setGiaoVien(GiaoVien giaoVien) {
+		this.giaoVien = giaoVien;
 	}
 
-	public HocPhan getMhp() {
-		return mhp;
+	public HocPhan getHocPhan() {
+		return hocPhan;
 	}
 
-	public void setMhp(HocPhan mhp) {
-		this.mhp = mhp;
+	public void setHocPhan(HocPhan hocPhan) {
+		this.hocPhan = hocPhan;
 	}
+	
 }

@@ -9,7 +9,7 @@ import javax.persistence.MapsId;
 import javax.persistence.Table;
 
 @Entity
-@Table (name = "CHITIETLOPHOC")
+@Table (name = "chitietlophoc")
 public class ChiTietLopHoc {
 	
 	@EmbeddedId
@@ -18,12 +18,12 @@ public class ChiTietLopHoc {
 	@ManyToOne(cascade = CascadeType.ALL)
 	@MapsId("malophoc")
 	@JoinColumn (name = "malophoc")
-	private LopHoc lophoc;
+	private LopHoc lopHoc;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@MapsId("masinhvien")
 	@JoinColumn (name = "masinhvien")
-	private SinhVien sinhvien;
+	private SinhVien sinhVien;
 
 	public SinhVienLopHocKey getId() {
 		return id;
@@ -33,21 +33,20 @@ public class ChiTietLopHoc {
 		this.id = id;
 	}
 
-	public LopHoc getLophoc() {
-		return lophoc;
+	public LopHoc getLopHoc() {
+		return lopHoc;
 	}
 
-	public void setLophoc(LopHoc lophoc) {
-		this.lophoc = lophoc;
+	public void setLopHoc(LopHoc lopHoc) {
+		this.lopHoc = lopHoc;
 	}
 
-	public SinhVien getSinhvien() {
-		return sinhvien;
+	public SinhVien getSinhVien() {
+		return sinhVien;
 	}
 
-	public void setSinhvien(SinhVien sinhvien) {
-		this.sinhvien = sinhvien;
+	public void setSinhVien(SinhVien sinhVien) {
+		this.sinhVien = sinhVien;
 	}
-
 	
 }
