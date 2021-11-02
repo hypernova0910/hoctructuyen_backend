@@ -43,12 +43,9 @@ public class QuaTrinhHocDAO {
 		CriteriaQuery<QuaTrinhHoc> cq = cb.createQuery(QuaTrinhHoc.class);
 		Root<QuaTrinhHoc> quaTrinhHocRoot = cq.from(QuaTrinhHoc.class);
 		List<Predicate> predicates = new ArrayList<>();
-		predicates.add(cb.equal(quaTrinhHocRoot.get("lophoc").get("malophoc"), lh.getMalophoc()));
+		predicates.add(cb.equal(quaTrinhHocRoot.get("lopHoc").get("malophoc"), lh.getMalophoc()));
 		cq.where(predicates.toArray(new Predicate[0]));
-//		List<Order> orders = new ArrayList<>();
-//		orders.add(cb.asc(classInfoRoot.get("title")));
-//		cq.orderBy(orders);
-//		cq.orderBy(cb.abs(quaTrinhHocRoot.get()));
+		cq.orderBy(cb.asc(quaTrinhHocRoot.get("thoiGianTao")));
 		TypedQuery<QuaTrinhHoc> query = entityManager.createQuery(cq);
 		return query.getResultList();
 	}

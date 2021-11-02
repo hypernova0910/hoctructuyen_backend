@@ -1,10 +1,10 @@
 package com.spring.backend.model;
 
-import java.util.Set;
+import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -31,16 +31,11 @@ public class SinhVien {
 	@Column (name = "pass")
 	private String password;
 	
-//	@OneToMany (mappedBy="sinhvien", cascade = CascadeType.ALL)
-//	private Set<ChiTietLopHoc> chitietlophoc;
-//
-//	public Set<ChiTietLopHoc> getChitietlophoc() {
-//		return chitietlophoc;
-//	}
-//
-//	public void setChitietlophoc(Set<ChiTietLopHoc> chitietlophoc) {
-//		this.chitietlophoc = chitietlophoc;
-//	}
+	@OneToMany(mappedBy="sinhVien", fetch = FetchType.LAZY, orphanRemoval = true)
+	private List<ChiTietLopHoc> chiTietLopHocs;
+	
+	@OneToMany(mappedBy="sinhVien", fetch = FetchType.LAZY, orphanRemoval = true)
+	private List<NhomFileSV> nhomFileSVs;
 
 	public Long getMasinhvien() {
 		return masinhvien;

@@ -25,9 +25,10 @@ public class QuaTrinhHocService {
 	    return qthDAO.findById(id);
 	}
 	
-	public void save(final QuaTrinhHoc classInfo) {
+	public void save(final QuaTrinhHoc qth) {
 	    // check if exist -> throw exception
-		qthDAO.persist(classInfo);
+		qth.setThoiGianTao();
+		qthDAO.persist(qth);
 	}
 	public void update(final QuaTrinhHoc qth) {
 		// check if not exist -> throw excpetion
@@ -35,13 +36,14 @@ public class QuaTrinhHocService {
 		qthDb.setTenQuaTrinh(qth.getTenQuaTrinh());
 		qthDb.setYeuCauNopBai(qth.getYeuCauNopBai());
 		qthDb.setThoiGianNop(qth.getThoiGianNop());
+		qthDb.setThoiGianTao();
 		qthDAO.persist(qthDb);
 	}
 	
 	public void delete(final Long id) {
-		QuaTrinhHoc sv = qthDAO.findById(id);
-	    if (sv != null) {
-	    	qthDAO.delete(sv);
+		QuaTrinhHoc qth = qthDAO.findById(id);
+	    if (qth != null) {
+	    	qthDAO.delete(qth);
 	    }
 	}
 }

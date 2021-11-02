@@ -1,8 +1,8 @@
 package com.spring.backend.model;
 
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,9 +14,12 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 @Entity
 @Table(name ="filegiaovien")
-public class FileGiaoVien {
+public abstract class FileGiaoVien {
 	
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
@@ -29,14 +32,15 @@ public class FileGiaoVien {
 	private String loaiFile;
 	
 	@Column (name = "thoigiangui")
-	@Temporal(value = TemporalType.TIMESTAMP)
-	private Date thoiGianGui;
+	private LocalDateTime thoiGianGui;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@OnDelete(action = OnDeleteAction.CASCADE)
+	@ManyToOne
 	@JoinColumn(name = "magiaovien")
 	private GiaoVien giaoVien;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@OnDelete(action = OnDeleteAction.CASCADE)
+	@ManyToOne
 	@JoinColumn(name = "maquatrinh")
 	private QuaTrinhHoc quaTrinhHoc;
 
@@ -64,12 +68,12 @@ public class FileGiaoVien {
 		this.loaiFile = loaiFile;
 	}
 
-	public Date getThoiGianGui() {
+	public LocalDateTime getThoiGianGui() {
 		return thoiGianGui;
 	}
 
-	public void setThoiGianGui(Date thoiGianGui) {
-		this.thoiGianGui = thoiGianGui;
+	public void setThoiGianGui() {
+		this.thoiGianGui = LocalDateTime.now(ZoneId.of("Asia/Ho_Chi_Minh"));
 	}
 
 	public GiaoVien getGiaoVien() {

@@ -11,9 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.spring.backend.common.Constants;
-import com.spring.backend.model.GiaoVien;
+import com.spring.backend.common.SearchObject;
 import com.spring.backend.model.LopHoc;
-import com.spring.backend.model.SinhVien;
 import com.spring.backend.service.LopHocService;
 
 @CrossOrigin(Constants.CROSS_ORIGIN)
@@ -25,23 +24,23 @@ public class LopHocController {
 	private LopHocService lhService;
 	
 	@GetMapping("sinhvien/{namhoc}/{ky}")
-	public List<LopHoc> getAllClassOfStudentInSemester(@RequestBody SinhVien sv, @PathVariable int namhoc, @PathVariable int ky){
-		return lhService.printAllLopHocSinhVienInSemester(sv, namhoc, ky);
+	public List<LopHoc> getStudentClassInSemester(@RequestBody SearchObject search, @PathVariable int namhoc, @PathVariable int ky){
+		return lhService.studentClassInSemesterService(search, namhoc, ky);
 	}
 	
 	@GetMapping("giaovien/{namhoc}/{ky}")
-	public List<LopHoc> getAllClassOfTeacherInSemester(@RequestBody GiaoVien gv, @PathVariable int namhoc, @PathVariable int ky){
-		return lhService.printAllLopHocGiaoVienInSemester(gv, namhoc, ky);
+	public List<LopHoc> getAllClassOfTeacherInSemester(@RequestBody SearchObject search, @PathVariable int namhoc, @PathVariable int ky){
+		return lhService.teacherClassInSemesterService(search, namhoc, ky);
 	}
 	
 	@GetMapping("sinhvien/getAll/{offset}/{limit}")
-	public List<LopHoc> getAllClassOfStudent(@RequestBody SinhVien sv, @PathVariable int offset, @PathVariable int limit){
-		return lhService.printAllLopHocSinhVien(sv, offset, limit);
+	public List<LopHoc> getAllClassOfStudent(@RequestBody SearchObject search, @PathVariable int offset, @PathVariable int limit){
+		return lhService.printAllStudentClassService(search, offset, limit);
 	}
 	
 	@GetMapping("giaovien/getAll/{offset}/{limit}")
-	public List<LopHoc> getAllClassOfTeacher(@RequestBody GiaoVien gv, @PathVariable int offset, @PathVariable int limit){
-		return lhService.printAllLopHocGiaoVien(gv, offset, limit);
+	public List<LopHoc> getAllClassOfTeacher(@RequestBody SearchObject search, @PathVariable int offset, @PathVariable int limit){
+		return lhService.printAllTeacherClassService(search, offset, limit);
 	}
 	
 	@GetMapping("getOneById/{id}")

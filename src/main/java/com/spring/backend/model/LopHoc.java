@@ -1,14 +1,21 @@
 package com.spring.backend.model;
 
-import javax.persistence.CascadeType;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
 @Table (name = "lophoc")
@@ -42,14 +49,21 @@ public class LopHoc {
 	@Column(name = "mota", length = 1000)
 	private String moTa;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@OnDelete(action = OnDeleteAction.CASCADE)
+	@ManyToOne
 	@JoinColumn (name = "magiaovien")
 	private GiaoVien giaoVien;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@OnDelete(action = OnDeleteAction.CASCADE)
+	@ManyToOne
 	@JoinColumn (name = "mahocphan")
-	private HocPhan hocPhan;	
+	private HocPhan hocPhan;
 	
+	@OneToMany(mappedBy="lopHoc", fetch = FetchType.LAZY, orphanRemoval = true)
+	private List<ChiTietLopHoc> chiTietLopHocs = new ArrayList<>();
+	@OneToMany(mappedBy="lopHoc")
+	private List<QuaTrinhHoc> quaTrinhHocs = new ArrayList<>();
+
 	public int getNgayHoc() {
 		return ngayHoc;
 	}

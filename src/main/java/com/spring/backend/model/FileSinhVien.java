@@ -1,8 +1,8 @@
 package com.spring.backend.model;
 
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,8 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
 @Table (name = "filesinhvien")
@@ -26,10 +27,10 @@ public class FileSinhVien {
 	private String tenFile;
 	
 	@Column (name = "thoigiangui")
-	@Temporal(value = TemporalType.TIMESTAMP)
-	private Date thoiGianGui;
+	private LocalDateTime thoiGianGui;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@OnDelete(action = OnDeleteAction.CASCADE)
+	@ManyToOne
 	@JoinColumn (name = "idnhomfile")
 	private NhomFileSV nfsv;
 	
@@ -50,12 +51,12 @@ public class FileSinhVien {
 		this.tenFile = tenFile;
 	}
 
-	public Date getThoiGianGui() {
+	public LocalDateTime getThoiGianGui() {
 		return thoiGianGui;
 	}
 
-	public void setThoiGianGui(Date thoiGianGui) {
-		this.thoiGianGui = thoiGianGui;
+	public void setThoiGianGui() {
+		this.thoiGianGui = LocalDateTime.now(ZoneId.of("Asia/Ho_Chi_Minh"));
 	}
 
 	public NhomFileSV getNfsv() {

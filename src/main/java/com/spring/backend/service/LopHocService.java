@@ -6,10 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.spring.backend.common.SearchObject;
 import com.spring.backend.dao.LopHocDAO;
-import com.spring.backend.model.GiaoVien;
 import com.spring.backend.model.LopHoc;
-import com.spring.backend.model.SinhVien;
 
 @Service
 @Transactional
@@ -18,20 +17,20 @@ public class LopHocService {
 	@Autowired
 	private LopHocDAO lhDAO;
 
-	public List<LopHoc> printAllLopHocSinhVienInSemester(SinhVien sv, int namhoc, int ky) {
-		return lhDAO.allClassOfStudentBySemester(sv, namhoc, ky);
+	public List<LopHoc> studentClassInSemesterService(SearchObject search, int namhoc, int ky) {
+		return lhDAO.studentClassInSemester(search, namhoc, ky);
 	}
 	
-	public List<LopHoc> printAllLopHocSinhVien(SinhVien sv, int offset, int limit) {
-		return lhDAO.allClassOfStudent(sv, offset, limit);
+	public List<LopHoc> printAllStudentClassService(SearchObject search, int offset, int limit) {
+		return lhDAO.allClassOfStudent(search, offset, limit);
 	}
 	
-	public List<LopHoc> printAllLopHocGiaoVienInSemester(GiaoVien gv, int namhoc, int ky) {
-		return lhDAO.allClassOfTeacherBySemester(gv, namhoc, ky);
+	public List<LopHoc> teacherClassInSemesterService(SearchObject search, int namhoc, int ky) {
+		return lhDAO.teacherClassInSemester(search, namhoc, ky);
 	}
 	
-	public List<LopHoc> printAllLopHocGiaoVien(GiaoVien gv, int offset, int limit) {
-		return lhDAO.allClassOfTeacher(gv, offset, limit);
+	public List<LopHoc> printAllTeacherClassService(SearchObject search, int offset, int limit) {
+		return lhDAO.allClassOfTeacher(search, offset, limit);
 	}
 
 	public LopHoc findById(final Long id) {

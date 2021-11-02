@@ -40,22 +40,26 @@ public class GiaoVienDAO {
 	//Dua ra danh sach giao vien duoc tim kiem theo ten
 	public List<GiaoVien> findAll(SearchObject search, int offset, int limit) {
 		CriteriaBuilder cb = entityManager.getCriteriaBuilder();
-	    CriteriaQuery<GiaoVien> cq = cb.createQuery(GiaoVien.class);
-	    Root<GiaoVien> giaoVienRoot = cq.from(GiaoVien.class);
-	    String[] splitSearch = search.getString1().split(" ");
-	    List<Predicate> predicates = new ArrayList<>();
-	    if(splitSearch.length > 0) {
-	    	for (String i : splitSearch) {
-	    		Predicate p1 = cb.like(giaoVienRoot.get("name"), i);
-	    		if (p1 != null) {
-	    			predicates.add(p1);
-	    		}
-	    	}
-	    }
-		cq.where(predicates.toArray(new Predicate[splitSearch.length]));
-		TypedQuery<GiaoVien> query = entityManager.createQuery(cq);
-		query.setFirstResult(offset);
-		query.setMaxResults(limit);
-		return query.getResultList();
+		CriteriaQuery<GiaoVien> cq = cb.createQuery(GiaoVien.class);
+		Root<GiaoVien> gvRoot = cq.from(GiaoVien.class);
+		if (search.getString1() != "") {
+			String[] splitSearch = search.getString1().split(" ");
+			List<Predicate> predicates = new ArrayList<>();
+			if (splitSearch.length > 0) {
+				for (String i : splitSearch) {
+					Predicate p1 = cb.like(gvRoot.get("tenGiaoVien"), "%"+i+"%");
+					predicates.add(p1);
+				}
+			}
+			Predicate p2 = cb.or(predicates.toArray(new Predicate[predicates.size()]));
+			cq.where(p2);
+			TypedQuery<GiaoVien> query = entityManager.createQuery(cq);
+			query.setFirstResult(offset);
+			query.setMaxResults(limit);
+			return query.getResultList();
+		}
+		else {
+			return null;
+		}
 	}
 }

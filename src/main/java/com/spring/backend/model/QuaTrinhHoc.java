@@ -1,9 +1,7 @@
 package com.spring.backend.model;
 
+import java.time.LocalDateTime;
 
-import java.util.Date;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,14 +9,18 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import java.time.ZoneId;
+import java.util.Set;
+
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
 @Table (name = "quatrinhhoc")
 public class QuaTrinhHoc {
-	
+//	private static final SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private Long maquatrinh;
@@ -27,19 +29,40 @@ public class QuaTrinhHoc {
 	private String tenQuaTrinh;
 	
 	@Column (name = "thoigiantao")
-	@Temporal(value = TemporalType.TIMESTAMP)
-	private Date thoiGianTao;
+	private LocalDateTime thoiGianTao;
 
 	@Column (name = "yeucaunopbai")
 	private Boolean yeuCauNopBai;
 	
 	@Column (name = "thoigiannop")
-	@Temporal(value = TemporalType.TIMESTAMP)
-	private Date thoiGianNop;
+	private LocalDateTime thoiGianNop;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@OnDelete(action = OnDeleteAction.CASCADE)
+	@ManyToOne
 	@JoinColumn(name = "malophoc")
 	private LopHoc lopHoc;
+	
+	@OneToMany(mappedBy="quaTrinhHoc")
+	private Set<FileGiaoVien> fileGiaoViens;
+	
+	@OneToMany(mappedBy="quaTrinhHoc")
+	private Set<NhomFileSV> nhomFileSVs;
+
+	public Set<FileGiaoVien> getFileGiaoViens() {
+		return fileGiaoViens;
+	}
+
+	public void setFileGiaoViens(Set<FileGiaoVien> fileGiaoViens) {
+		this.fileGiaoViens = fileGiaoViens;
+	}
+
+	public Set<NhomFileSV> getNhomFileSVs() {
+		return nhomFileSVs;
+	}
+
+	public void setNhomFileSVs(Set<NhomFileSV> nhomFileSVs) {
+		this.nhomFileSVs = nhomFileSVs;
+	}
 
 	public Long getMaquatrinh() {
 		return maquatrinh;
@@ -56,13 +79,13 @@ public class QuaTrinhHoc {
 	public void setTenQuaTrinh(String tenQuaTrinh) {
 		this.tenQuaTrinh = tenQuaTrinh;
 	}
-	
-	public Date getThoiGianTao() {
+
+	public LocalDateTime getThoiGianTao() {
 		return thoiGianTao;
 	}
 
-	public void setThoiGianTao(Date thoiGianTao) {
-		this.thoiGianTao = thoiGianTao;
+	public void setThoiGianTao() {
+		this.thoiGianTao = LocalDateTime.now(ZoneId.of("Asia/Ho_Chi_Minh"));
 	}
 
 	public Boolean getYeuCauNopBai() {
@@ -72,12 +95,13 @@ public class QuaTrinhHoc {
 	public void setYeuCauNopBai(Boolean yeuCauNopBai) {
 		this.yeuCauNopBai = yeuCauNopBai;
 	}
+	
 
-	public Date getThoiGianNop() {
+	public LocalDateTime getThoiGianNop() {
 		return thoiGianNop;
 	}
 
-	public void setThoiGianNop(Date thoiGianNop) {
+	public void setThoiGianNop(LocalDateTime thoiGianNop) {
 		this.thoiGianNop = thoiGianNop;
 	}
 

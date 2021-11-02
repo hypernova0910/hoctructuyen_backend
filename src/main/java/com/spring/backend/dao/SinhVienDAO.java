@@ -21,40 +21,45 @@ import com.spring.backend.common.SearchObject;
 @Transactional(rollbackFor = Exception.class)
 public class SinhVienDAO {
 
-	@PersistenceContext  
+	@PersistenceContext
 	private EntityManager entityManager;
-	
+
 	public void persist(final SinhVien sv) {
 		entityManager.persist(sv);
 	}
-	
+
 	public SinhVien findById(final Long id) {
-	    return entityManager.find(SinhVien.class, id);
+		System.out.println(id);
+		return entityManager.find(SinhVien.class, id);
 	}
-	
+
 	public void delete(final SinhVien sv) {
-	    entityManager.remove(sv);
+		entityManager.remove(sv);
 	}
-	
-	//Dua ra danh sach sinh vien duoc tim kiem theo ten
+
+	// Dua ra danh sach sinh vien duoc tim kiem theo ten
 	public List<SinhVien> findAll(SearchObject search, int offset, int limit) {
 		CriteriaBuilder cb = entityManager.getCriteriaBuilder();
-	    CriteriaQuery<SinhVien> cq = cb.createQuery(SinhVien.class);
-	    Root<SinhVien> svRoot = cq.from(SinhVien.class);
-	    String[] splitSearch = search.getString1().split(" ");
-	    List<Predicate> predicates = new ArrayList<>();
-	    if(splitSearch.length > 0) {
-	    	for (String i : splitSearch) {
-	    		Predicate p1 = cb.like(svRoot.get("name"), i);
-	    		if (p1 != null) {
-	    			predicates.add(p1);
-	    		}
-	    	}
-	    }
-		cq.where(predicates.toArray(new Predicate[splitSearch.length]));
-		TypedQuery<SinhVien> query = entityManager.createQuery(cq);
-		query.setFirstResult(offset);
-		query.setMaxResults(limit);
-		return query.getResultList();
+		CriteriaQuery<SinhVien> cq = cb.createQuery(SinhVien.class);
+		Root<SinhVien> svRoot = cq.from(SinhVien.class);
+		if (search.getString1() != "") {
+			String[] splitSearch = search.getString1().split(" ");
+			List<Predicate> predicates = new ArrayList<>();
+			if (splitSearch.length > 0) {
+				for (String i : splitSearch) {
+					Predicate p1 = cb.like(svRoot.get("tenSinhVien"), "%"+i+"%");
+					predicates.add(p1);
+				}
+			}
+			Predicate p2 = cb.or(predicates.toArray(new Predicate[predicates.size()]));
+			cq.where(p2);
+			TypedQuery<SinhVien> query = entityManager.createQuery(cq);
+			query.setFirstResult(offset);
+			query.setMaxResults(limit);
+			return query.getResultList();
+		}
+		else {
+			return null;
+		}
 	}
 }
