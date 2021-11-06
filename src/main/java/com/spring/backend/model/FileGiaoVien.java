@@ -11,11 +11,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 @Table(name ="filegiaovien")
@@ -28,8 +27,8 @@ public abstract class FileGiaoVien {
 	@Column (name = "tenfile")
 	private String tenFile;
 	
-	@Column (name = "loaifile")
-	private String loaiFile;
+	@Column (name = "duongdan")
+	private String duongDan;
 	
 	@Column (name = "thoigiangui")
 	private LocalDateTime thoiGianGui;
@@ -60,12 +59,12 @@ public abstract class FileGiaoVien {
 		this.tenFile = tenFile;
 	}
 
-	public String getLoaiFile() {
-		return loaiFile;
+	public String getDuongDan() {
+		return duongDan;
 	}
 
-	public void setLoaiFile(String loaiFile) {
-		this.loaiFile = loaiFile;
+	public void setDuongDan(String duongDan) {
+		this.duongDan = duongDan;
 	}
 
 	public LocalDateTime getThoiGianGui() {
