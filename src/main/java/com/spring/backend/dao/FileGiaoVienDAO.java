@@ -43,7 +43,7 @@ public class FileGiaoVienDAO {
 //		String path = currentWorkingDir.toString();
 //		System.out.println(path);
 //		path += "\\src\\main\\java\\FileUpload\\FileGiaoVien\\" + files.getOriginalFilename();
-		path = ("F:\\" + files.getOriginalFilename()).toString();
+		path = ("E:\\ProjectWeb\\" + files.getOriginalFilename()).toString();
 		files.transferTo(new File(path));
 		
 //		fileGV.setTenFile(files.getOriginalFilename());

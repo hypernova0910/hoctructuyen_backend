@@ -27,8 +27,8 @@ public abstract class FileGiaoVien {
 	@Column (name = "tenfile")
 	private String tenFile;
 	
-	@Column (name = "duongdan")
-	private String duongDan;
+	@Column (name = "tenfiletrenserver")
+	private String tenFileTrenServer;
 	
 	@Column (name = "thoigiangui")
 	private LocalDateTime thoiGianGui;
@@ -59,12 +59,12 @@ public abstract class FileGiaoVien {
 		this.tenFile = tenFile;
 	}
 
-	public String getDuongDan() {
-		return duongDan;
+	public String getTenFileTrenServer() {
+		return tenFileTrenServer;
 	}
 
-	public void setDuongDan(String duongDan) {
-		this.duongDan = duongDan;
+	public void setTenFileTrenServer(String tenFileTrenServer) {
+		this.tenFileTrenServer = tenFileTrenServer;
 	}
 
 	public LocalDateTime getThoiGianGui() {
