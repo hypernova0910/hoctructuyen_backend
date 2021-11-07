@@ -10,12 +10,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.spring.backend.common.Constants;
 import com.spring.backend.common.SearchObject;
 import com.spring.backend.model.FileGiaoVien;
+import com.spring.backend.model.GiaoVien;
 import com.spring.backend.service.FileGiaoVienService;
 
 @CrossOrigin(Constants.CROSS_ORIGIN)
@@ -27,8 +29,9 @@ public class FileGiaoVienController {
 	private FileGiaoVienService fileGVService;
 	
 	@PostMapping("uploadfile")
-	public void uploadFileController(@RequestParam("files") MultipartFile files) throws IOException {
-		fileGVService.uploadFileService(files);
+	public void uploadFileController(@RequestPart("fgv") FileGiaoVien fgv, @RequestPart("file") MultipartFile file) throws IOException {
+//		@RequestParam("file") 
+		fileGVService.uploadFileService(fgv ,file);
 	}
 	
 	@PostMapping("deletefiles")

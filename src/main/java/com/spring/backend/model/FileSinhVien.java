@@ -26,6 +26,9 @@ public class FileSinhVien {
 	@Column (name = "tenfile")
 	private String tenFile;
 	
+	@Column (name = "tenfiletrenserver")
+	private String tenFileTrenServer;
+	
 	@Column (name = "thoigiangui")
 	private LocalDateTime thoiGianGui;
 	

@@ -42,6 +42,17 @@ public abstract class FileGiaoVien {
 	@ManyToOne
 	@JoinColumn(name = "maquatrinh")
 	private QuaTrinhHoc quaTrinhHoc;
+	
+	public FileGiaoVien() {}
+
+	public FileGiaoVien(String tenFile, String tenFileTrenServer,
+			GiaoVien giaoVien, QuaTrinhHoc quaTrinhHoc) {
+		this.tenFile = tenFile;
+		this.tenFileTrenServer = tenFileTrenServer;
+		this.thoiGianGui = LocalDateTime.now(ZoneId.of("Asia/Ho_Chi_Minh"));
+		this.giaoVien = giaoVien;
+		this.quaTrinhHoc = quaTrinhHoc;
+	}
 
 	public Long getIdfilegv() {
 		return idfilegv;

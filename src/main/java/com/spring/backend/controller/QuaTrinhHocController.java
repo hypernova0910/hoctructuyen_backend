@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.spring.backend.common.Constants;
+import com.spring.backend.common.SearchObject;
 import com.spring.backend.model.LopHoc;
 import com.spring.backend.model.QuaTrinhHoc;
 import com.spring.backend.service.QuaTrinhHocService;
@@ -25,9 +26,9 @@ public class QuaTrinhHocController {
 	@Autowired
 	private QuaTrinhHocService qthService;
 	
-	@GetMapping("getAll")
-	public List<QuaTrinhHoc> getAll(@RequestBody LopHoc lh){
-		return qthService.printAllLearningProcess(lh);
+	@PostMapping("getAll")
+	public List<QuaTrinhHoc> getAll(@RequestBody SearchObject search){
+		return qthService.printAllLearningProcess(search);
 	}
 	
 	@GetMapping("getOneById/{id}")

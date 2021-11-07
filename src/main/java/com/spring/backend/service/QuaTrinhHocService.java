@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.spring.backend.common.SearchObject;
 import com.spring.backend.dao.QuaTrinhHocDAO;
 import com.spring.backend.model.LopHoc;
 import com.spring.backend.model.QuaTrinhHoc;
@@ -17,8 +18,8 @@ public class QuaTrinhHocService {
 	@Autowired
 	private QuaTrinhHocDAO qthDAO;
 	
-	public List<QuaTrinhHoc> printAllLearningProcess(LopHoc lh) {
-		return qthDAO.printAllLearningProcess(lh);
+	public List<QuaTrinhHoc> printAllLearningProcess(SearchObject search) {
+		return qthDAO.printAllLearningProcess(search);
 	}
 	
 	public QuaTrinhHoc findById(final Long id) {

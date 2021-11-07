@@ -23,22 +23,22 @@ public class LopHocController {
 	@Autowired
 	private LopHocService lhService;
 	
-	@GetMapping("sinhvien/{namhoc}/{ky}")
+	@PostMapping("sinhvien/{namhoc}/{ky}")
 	public List<LopHoc> getStudentClassInSemester(@RequestBody SearchObject search, @PathVariable int namhoc, @PathVariable int ky){
 		return lhService.studentClassInSemesterService(search, namhoc, ky);
 	}
 	
-	@GetMapping("giaovien/{namhoc}/{ky}")
+	@PostMapping("giaovien/{namhoc}/{ky}")
 	public List<LopHoc> getAllClassOfTeacherInSemester(@RequestBody SearchObject search, @PathVariable int namhoc, @PathVariable int ky){
 		return lhService.teacherClassInSemesterService(search, namhoc, ky);
 	}
 	
-	@GetMapping("sinhvien/getAll/{offset}/{limit}")
+	@PostMapping("sinhvien/getAll/{offset}/{limit}")
 	public List<LopHoc> getAllClassOfStudent(@RequestBody SearchObject search, @PathVariable int offset, @PathVariable int limit){
 		return lhService.printAllStudentClassService(search, offset, limit);
 	}
 	
-	@GetMapping("giaovien/getAll/{offset}/{limit}")
+	@PostMapping("giaovien/getAll/{offset}/{limit}")
 	public List<LopHoc> getAllClassOfTeacher(@RequestBody SearchObject search, @PathVariable int offset, @PathVariable int limit){
 		return lhService.printAllTeacherClassService(search, offset, limit);
 	}

@@ -12,6 +12,7 @@ public abstract class FileSinhVien_ {
 
 	public static volatile SingularAttribute<FileSinhVien, Long> idfilesv;
 	public static volatile SingularAttribute<FileSinhVien, String> tenFile;
+	public static volatile SingularAttribute<FileSinhVien, String> tenFileTrenServer;
 	public static volatile SingularAttribute<FileSinhVien, LocalDateTime> thoiGianGui;
 	public static volatile SingularAttribute<FileSinhVien, NhomFileSV> idnhomfile;
 }

@@ -17,6 +17,7 @@ import javax.persistence.criteria.Root;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.spring.backend.common.SearchObject;
@@ -31,7 +32,7 @@ public class FileGiaoVienDAO {
 	@PersistenceContext
 	private EntityManager entityManager;
 	
-	public void uploadFile(MultipartFile files) throws IOException {
+	public void uploadFile(MultipartFile file) throws IOException {
 //		FileGiaoVien fileGV;
 //		fileGV.setGiaoVien(search.getString1());
 //		CriteriaBuilder cb = entityManager.getCriteriaBuilder();
@@ -39,13 +40,6 @@ public class FileGiaoVienDAO {
 //		Root<FileGiaoVien> fileGVRoot = cq.from(FileGiaoVien.class);
 		
 //		Path currentWorkingDir = Paths.get("").toAbsolutePath();
-		String path;
-//		String path = currentWorkingDir.toString();
-//		System.out.println(path);
-//		path += "\\src\\main\\java\\FileUpload\\FileGiaoVien\\" + files.getOriginalFilename();
-		path = ("E:\\ProjectWeb\\" + files.getOriginalFilename()).toString();
-		files.transferTo(new File(path));
-		
 //		fileGV.setTenFile(files.getOriginalFilename());
 //		fileGV.setDuongDan(path);
 //		fileGV.setThoiGianGui();
@@ -57,6 +51,10 @@ public class FileGiaoVienDAO {
 //		.setParameter(3, fileGV.getThoiGianGui())
 //		.setParameter(4, fileGV.getGiaoVien().getMagiaovien())
 //		.setParameter(5, fileGV.getQuaTrinhHoc().getMaquatrinh());
+	}
+	
+	public void persist(final FileGiaoVien fgv) {
+		entityManager.persist(fgv);
 	}
 	
 	public FileGiaoVien findById(final Long id) {

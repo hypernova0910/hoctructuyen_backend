@@ -35,13 +35,13 @@ public class GiaoVienController {
 	}
 	
 	@PostMapping("addGiaoVien")
-	public void addObj(@RequestBody GiaoVien sv){
-		gvService.save(sv);
+	public void addObj(@RequestBody GiaoVien gv){
+		gvService.save(gv);
 	}
 	
 	@PostMapping("updateGiaoVien")
-	public void updateObj(@RequestBody GiaoVien sv){
-		gvService.update(sv);
+	public void updateObj(@RequestBody GiaoVien gv){
+		gvService.update(gv);
 	}
 	
 	@PostMapping("deleteGiaoVien")
