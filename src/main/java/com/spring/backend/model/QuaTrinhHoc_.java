@@ -16,7 +16,7 @@ public abstract class QuaTrinhHoc_ {
 	public static volatile SingularAttribute<QuaTrinhHoc, Boolean> yeuCauNopBai;
 	public static volatile SingularAttribute<QuaTrinhHoc, LocalDateTime> thoiGianTao;
 	public static volatile SingularAttribute<QuaTrinhHoc, LocalDateTime> thoiGianNop;
-	public static volatile SingularAttribute<QuaTrinhHoc, Long> malophoc;
+	public static volatile SingularAttribute<QuaTrinhHoc, LopHoc> lopHoc;
 	public static volatile SetAttribute<QuaTrinhHoc, FileGiaoVien> fileGiaoViens;
 	public static volatile SetAttribute<QuaTrinhHoc, NhomFileSV> nhomFileSVs;
 }
