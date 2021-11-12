@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -12,7 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.time.ZoneId;
-import java.util.Set;
+import java.util.List;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -20,7 +21,6 @@ import org.hibernate.annotations.OnDeleteAction;
 @Entity
 @Table (name = "quatrinhhoc")
 public class QuaTrinhHoc {
-//	private static final SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private Long maquatrinh;
@@ -42,27 +42,11 @@ public class QuaTrinhHoc {
 	@JoinColumn(name = "malophoc")
 	private LopHoc lopHoc;
 	
-	@OneToMany(mappedBy="quaTrinhHoc")
-	private Set<FileGiaoVien> fileGiaoViens;
+	@OneToMany(mappedBy="quaTrinhHoc", fetch = FetchType.LAZY, orphanRemoval = true)
+	private List<FileGiaoVien> fileGiaoViens;
 	
-	@OneToMany(mappedBy="quaTrinhHoc")
-	private Set<NhomFileSV> nhomFileSVs;
-
-	public Set<FileGiaoVien> getFileGiaoViens() {
-		return fileGiaoViens;
-	}
-
-	public void setFileGiaoViens(Set<FileGiaoVien> fileGiaoViens) {
-		this.fileGiaoViens = fileGiaoViens;
-	}
-
-	public Set<NhomFileSV> getNhomFileSVs() {
-		return nhomFileSVs;
-	}
-
-	public void setNhomFileSVs(Set<NhomFileSV> nhomFileSVs) {
-		this.nhomFileSVs = nhomFileSVs;
-	}
+	@OneToMany(mappedBy="quaTrinhHoc", fetch = FetchType.LAZY, orphanRemoval = true)
+	private List<NhomFileSV> nhomFileSVs;
 
 	public Long getMaquatrinh() {
 		return maquatrinh;
@@ -95,7 +79,6 @@ public class QuaTrinhHoc {
 	public void setYeuCauNopBai(Boolean yeuCauNopBai) {
 		this.yeuCauNopBai = yeuCauNopBai;
 	}
-	
 
 	public LocalDateTime getThoiGianNop() {
 		return thoiGianNop;

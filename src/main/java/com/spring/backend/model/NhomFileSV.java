@@ -2,7 +2,7 @@ package com.spring.backend.model;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,8 +13,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -45,16 +43,7 @@ public class NhomFileSV {
 	private QuaTrinhHoc quaTrinhHoc;
 
 	@OneToMany(mappedBy="nfsv")
-	private Set<FileSinhVien> fileSinhViens;
-	
-
-	public Set<FileSinhVien> getFileSinhViens() {
-		return fileSinhViens;
-	}
-
-	public void setFileSinhViens(Set<FileSinhVien> fileSinhViens) {
-		this.fileSinhViens = fileSinhViens;
-	}
+	private List<FileSinhVien> fileSinhViens;
 
 	public Long getIdnhomfile() {
 		return idnhomfile;

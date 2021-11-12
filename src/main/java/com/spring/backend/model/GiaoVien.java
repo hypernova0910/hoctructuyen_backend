@@ -1,7 +1,6 @@
 package com.spring.backend.model;
 
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -32,39 +31,12 @@ public class GiaoVien {
 	@Column(name = "pass")
 	private String password;
 	
-	@OneToMany(mappedBy="giaoVien")
+	@OneToMany(mappedBy="giaoVien", fetch = FetchType.LAZY, orphanRemoval = true)
 	private List<LopHoc> lopHocs;
 	
 	@OneToMany(mappedBy="giaoVien", fetch = FetchType.LAZY, orphanRemoval = true)
 	private List<FileGiaoVien> fileGiaoViens;
 	
-//	public Set<LopHoc> getLopHocs() {
-//		return lopHocs;
-//	}
-//
-//	public void setLopHocs(Set<LopHoc> lopHocs) {
-//		this.lopHocs = lopHocs;
-//	}
-//
-//	public Set<FileGiaoVien> getFileGiaoViens() {
-//		return fileGiaoViens;
-//	}
-//
-//	public void setFileGiaoViens(Set<FileGiaoVien> fileGiaoViens) {
-//		this.fileGiaoViens = fileGiaoViens;
-//	}
-
-	//	@OneToMany (mappedBy="gv", cascade = CascadeType.ALL)
-//	private Set<FileGiaoVien> filegiaovien;
-//
-//	public Set<FileGiaoVien> getFilegiaovien() {
-//		return filegiaovien;
-//	}
-//
-//	public void setFilegiaovien(Set<FileGiaoVien> filegiaovien) {
-//		this.filegiaovien = filegiaovien;
-//	}
-//
 	public Long getMagiaovien() {
 		return magiaovien;
 	}

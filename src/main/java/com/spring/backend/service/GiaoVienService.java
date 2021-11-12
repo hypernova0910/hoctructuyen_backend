@@ -25,9 +25,9 @@ public class GiaoVienService {
 	    return gvDAO.findById(id);
 	}
 	
-	public void save(final GiaoVien classInfo) {
+	public void save(final GiaoVien gv) {
 	    // check if exist -> throw exception
-		gvDAO.persist(classInfo);
+		gvDAO.persist(gv);
 	}
 	public void update(final GiaoVien gv) {
 		// check if not exist -> throw excpetion

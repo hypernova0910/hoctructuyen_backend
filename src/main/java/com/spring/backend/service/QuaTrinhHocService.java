@@ -8,7 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.spring.backend.common.SearchObject;
 import com.spring.backend.dao.QuaTrinhHocDAO;
-import com.spring.backend.model.LopHoc;
 import com.spring.backend.model.QuaTrinhHoc;
 
 @Service

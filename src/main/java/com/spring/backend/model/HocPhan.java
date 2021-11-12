@@ -1,6 +1,6 @@
 package com.spring.backend.model;
 
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -22,7 +22,7 @@ public class HocPhan {
 	private String tenHocPhan;
 	
 	@OneToMany(mappedBy="hocPhan")
-	private Set<LopHoc> lopHocs;
+	private List<LopHoc> lopHocs;
 
 	public Long getMahocphan() {
 		return mahocphan;

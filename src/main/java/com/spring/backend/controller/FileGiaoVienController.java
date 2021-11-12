@@ -5,11 +5,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -17,7 +15,6 @@ import org.springframework.web.multipart.MultipartFile;
 import com.spring.backend.common.Constants;
 import com.spring.backend.common.SearchObject;
 import com.spring.backend.model.FileGiaoVien;
-import com.spring.backend.model.GiaoVien;
 import com.spring.backend.service.FileGiaoVienService;
 
 @CrossOrigin(Constants.CROSS_ORIGIN)
@@ -28,18 +25,22 @@ public class FileGiaoVienController {
 	@Autowired
 	private FileGiaoVienService fileGVService;
 	
-	@PostMapping("uploadfile")
-	public void uploadFileController(@RequestPart("fgv") FileGiaoVien fgv, @RequestPart("file") MultipartFile file) throws IOException {
-//		@RequestParam("file") 
-		fileGVService.uploadFileService(fgv ,file);
+	@PostMapping("uploadfiles")
+	public void uploadFileController(@RequestPart("idgiaovien") Long idgiaovien, @RequestPart("idquatrinhhoc") Long idquatrinhhoc, @RequestPart("files") MultipartFile[] files) throws IOException {
+		fileGVService.uploadFileService(idgiaovien, idquatrinhhoc, files);
+	}
+	
+	@PostMapping("downloadfile")
+	public void downloadFileController(@RequestPart("idgiaovien") Long idgiaovien, @RequestPart("idfilegiaovien") Long idfilegiaovien, @RequestPart("file") MultipartFile file) {
+		
 	}
 	
 	@PostMapping("deletefiles")
-	public void deleteFileController(@RequestBody FileGiaoVien[] fileGVs) {
-		fileGVService.deleteFileService(fileGVs);
+	public void deleteFileController(@RequestBody SearchObject search) {
+		fileGVService.deleteFileService(search);
 	}
 	
-	@GetMapping("printallfiles")
+	@PostMapping("printallfiles")
 	public List<FileGiaoVien> printFileController(@RequestBody SearchObject search) {
 		return fileGVService.printFileService(search);
 	}

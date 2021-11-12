@@ -14,11 +14,10 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
-import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 @Table(name ="filegiaovien")
-public abstract class FileGiaoVien {
+public class FileGiaoVien {
 	
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)

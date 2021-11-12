@@ -61,7 +61,7 @@ public class LopHoc {
 	
 	@OneToMany(mappedBy="lopHoc", fetch = FetchType.LAZY, orphanRemoval = true)
 	private List<ChiTietLopHoc> chiTietLopHocs = new ArrayList<>();
-	@OneToMany(mappedBy="lopHoc")
+	@OneToMany(mappedBy="lopHoc", fetch = FetchType.LAZY, orphanRemoval = true)
 	private List<QuaTrinhHoc> quaTrinhHocs = new ArrayList<>();
 
 	public int getNgayHoc() {

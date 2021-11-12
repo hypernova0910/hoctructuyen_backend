@@ -1,9 +1,5 @@
 package com.spring.backend.dao;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,12 +14,10 @@ import javax.persistence.criteria.Root;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.spring.backend.common.SearchObject;
 import com.spring.backend.model.FileGiaoVien;
 import com.spring.backend.model.FileGiaoVien_;
-import com.spring.backend.model.GiaoVien;
 
 @Repository(value = "FileGiaoVienDAO")
 @Transactional(rollbackFor = Exception.class)
@@ -31,27 +25,6 @@ public class FileGiaoVienDAO {
 
 	@PersistenceContext
 	private EntityManager entityManager;
-	
-	public void uploadFile(MultipartFile file) throws IOException {
-//		FileGiaoVien fileGV;
-//		fileGV.setGiaoVien(search.getString1());
-//		CriteriaBuilder cb = entityManager.getCriteriaBuilder();
-//		CriteriaQuery<FileGiaoVien> cq = cb.createQuery(FileGiaoVien.class);
-//		Root<FileGiaoVien> fileGVRoot = cq.from(FileGiaoVien.class);
-		
-//		Path currentWorkingDir = Paths.get("").toAbsolutePath();
-//		fileGV.setTenFile(files.getOriginalFilename());
-//		fileGV.setDuongDan(path);
-//		fileGV.setThoiGianGui();
-//		fileGV.setGiaoVien(null);
-//		fileGV.setQuaTrinhHoc(null);
-//		entityManager.createNativeQuery("INSERT INTO filegiaovien(tenfile, duongdan, thoigiangui, magiaovien, maquatrinh) VALUES (?, ?, ?, ?, ?)")
-//		.setParameter(1, fileGV.getTenFile())
-//		.setParameter(2, fileGV.getDuongDan())
-//		.setParameter(3, fileGV.getThoiGianGui())
-//		.setParameter(4, fileGV.getGiaoVien().getMagiaovien())
-//		.setParameter(5, fileGV.getQuaTrinhHoc().getMaquatrinh());
-	}
 	
 	public void persist(final FileGiaoVien fgv) {
 		entityManager.persist(fgv);
@@ -61,9 +34,12 @@ public class FileGiaoVienDAO {
 		return entityManager.find(FileGiaoVien.class, id);
 	}
 	
-	public void delete(final FileGiaoVien[] fgvs) {
-		for (FileGiaoVien i : fgvs) {
-			entityManager.remove(i);
+	public void delete(@RequestBody SearchObject search) {
+		
+		for (Long id : search.getListLong1()){
+			FileGiaoVien a = new FileGiaoVien();
+			a = findById(id);
+			entityManager.remove(a);
 		}
 	}
 	
@@ -72,8 +48,8 @@ public class FileGiaoVienDAO {
 		CriteriaQuery<FileGiaoVien> cq = cb.createQuery(FileGiaoVien.class);
 		Root<FileGiaoVien> fgvRoot = cq.from(FileGiaoVien.class);
 		List<Predicate> predicates = new ArrayList<>();
-		predicates.add(cb.equal(fgvRoot.get(FileGiaoVien_.maGiaoVien), search.getString1()));
-		predicates.add(cb.equal(fgvRoot.get(FileGiaoVien_.maQuaTrinh), search.getString2()));
+		predicates.add(cb.equal(fgvRoot.get(FileGiaoVien_.giaoVien), search.getLong1()));
+		predicates.add(cb.equal(fgvRoot.get(FileGiaoVien_.quaTrinhHoc), search.getLong2()));
 		cq.where(predicates.toArray(new Predicate[predicates.size()]));
 		TypedQuery<FileGiaoVien> query = entityManager.createQuery(cq);
 		return query.getResultList();

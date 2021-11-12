@@ -37,7 +37,6 @@ public class FileSinhVien {
 	@JoinColumn (name = "idnhomfile")
 	private NhomFileSV nfsv;
 	
-
 	public Long getIdfilesv() {
 		return idfilesv;
 	}
