@@ -30,7 +30,7 @@ public class NhomFileSV {
 	private LocalDateTime lanSuaCuoi;
 	
 	@Column (name = "diem")
-	private double diem;
+	private double diem = 0;
 	
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	@ManyToOne
@@ -44,6 +44,15 @@ public class NhomFileSV {
 
 	@OneToMany(mappedBy="nfsv")
 	private List<FileSinhVien> fileSinhViens;
+	
+	public NhomFileSV() {}
+
+	public NhomFileSV(double diem, SinhVien sinhVien, QuaTrinhHoc quaTrinhHoc) {
+		this.lanSuaCuoi = LocalDateTime.now(ZoneId.of("Asia/Ho_Chi_Minh"));
+		this.diem = diem;
+		this.sinhVien = sinhVien;
+		this.quaTrinhHoc = quaTrinhHoc;
+	}
 
 	public Long getIdnhomfile() {
 		return idnhomfile;

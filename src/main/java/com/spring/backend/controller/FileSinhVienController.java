@@ -20,29 +20,29 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import com.spring.backend.common.Constants;
 import com.spring.backend.common.SearchObject;
-import com.spring.backend.model.FileGiaoVien;
-import com.spring.backend.service.FileGiaoVienService;
+import com.spring.backend.model.FileSinhVien;
+import com.spring.backend.service.FileSinhVienService;
 
 @CrossOrigin(Constants.CROSS_ORIGIN)
 @RestController
 @ControllerAdvice
-@RequestMapping(Constants.API_URL + "filegiaovien")
-public class FileGiaoVienController {
+@RequestMapping(Constants.API_URL + "filesinhvien")
+public class FileSinhVienController {
 
 	@Value("${spring.servlet.multipart.max-file-size}")
 	private String maxFileSize;
 	@Autowired
-	private FileGiaoVienService fileGVService;
+	private FileSinhVienService fileSVService;
 	
 	@PostMapping("uploadfiles")
-	public void uploadFileController(@RequestPart("idgiaovien") Long idgiaovien, @RequestPart("idquatrinhhoc") Long idquatrinhhoc, @RequestPart("files") MultipartFile[] files) throws IOException {
-		fileGVService.uploadFileService(idgiaovien, idquatrinhhoc, files);
+	public void uploadFileController(@RequestPart("idnhomfile") Long idnhomfile, @RequestPart("files") MultipartFile[] files) throws IOException {
+		fileSVService.uploadFileService(idnhomfile, files);
 	}
 	
 	@ExceptionHandler(MaxUploadSizeExceededException.class)
 	public String handleFileUploadError(RedirectAttributes ra) {
 		ra.addFlashAttribute("error", "Khong the upload file lon hon " + maxFileSize);
-		return "redirect:/api/hoctructuyen/filegiaovien";
+		return "redirect:/api/hoctructuyen/filesinhvien";
 	}
 	
 //	@ExceptionHandler(MaxUploadSizeExceededException.class)
@@ -53,17 +53,17 @@ public class FileGiaoVienController {
 //	}
 	
 	@PostMapping("downloadfile")
-	public void downloadFileController(@RequestPart("idgiaovien") Long idgiaovien, @RequestPart("idfilegiaovien") Long idfilegiaovien, @RequestPart("file") MultipartFile file) {
+	public void downloadFileController(@RequestPart("idnhomfile") Long idnhomfile, @RequestPart("file") MultipartFile file) {
 		
 	}
 	
 	@PostMapping("deletefiles")
 	public void deleteFileController(@RequestBody SearchObject search) {
-		fileGVService.deleteFileService(search);
+		fileSVService.deleteFileService(search);
 	}
 	
 	@PostMapping("printallfiles")
-	public List<FileGiaoVien> printFileController(@RequestBody SearchObject search) {
-		return fileGVService.printFileService(search);
+	public List<FileSinhVien> printFileController(@RequestBody SearchObject search) {
+		return fileSVService.printFileService(search);
 	}
 }

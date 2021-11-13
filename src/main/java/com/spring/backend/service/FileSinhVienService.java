@@ -13,27 +13,26 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.spring.backend.common.SearchObject;
-import com.spring.backend.dao.FileGiaoVienDAO;
-import com.spring.backend.dao.GiaoVienDAO;
+import com.spring.backend.dao.FileSinhVienDAO;
+import com.spring.backend.dao.NhomFileSinhVienDAO;
 import com.spring.backend.dao.QuaTrinhHocDAO;
-import com.spring.backend.model.FileGiaoVien;
-import com.spring.backend.model.GiaoVien;
-import com.spring.backend.model.QuaTrinhHoc;
+import com.spring.backend.model.FileSinhVien;
+import com.spring.backend.model.NhomFileSV;
 
 @Service
 @Transactional
-public class FileGiaoVienService {
+public class FileSinhVienService {
 
 	@Autowired
-	FileGiaoVienDAO fileGiaoVienDAO;
+	FileSinhVienDAO fileSinhVienDAO;
 	
 	@Autowired
-	GiaoVienDAO gvDAO;
+	QuaTrinhHocDAO quaTrinhHocDAO;
 	
 	@Autowired
-	QuaTrinhHocDAO qthDAO;
+	NhomFileSinhVienDAO nhomFileSinhVienDAO;
 	
-	public void uploadFileService(Long idgiaovien, Long idquatrinhhoc, MultipartFile[] files) {
+	public void uploadFileService(Long idnhomfilesv, MultipartFile[] files) {
 		Arrays.asList(files).forEach(f -> {
 			String tenFileTrenServer = UUID.randomUUID() + f.getOriginalFilename();
 			String path = ("E:\\ProjectWeb\\" + tenFileTrenServer);
@@ -44,25 +43,26 @@ public class FileGiaoVienService {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			GiaoVien gv = new GiaoVien();
-			gv = gvDAO.findById(idgiaovien);
-			QuaTrinhHoc qth = new QuaTrinhHoc();
-			qth = qthDAO.findById(idquatrinhhoc);
-			FileGiaoVien fgv = new FileGiaoVien(f.getOriginalFilename(), tenFileTrenServer, gv, qth);
-			fgv.setThoiGianGui();
-			fileGiaoVienDAO.persist(fgv);
+			NhomFileSV nfsv = new NhomFileSV();
+			nfsv = nhomFileSinhVienDAO.findById(idnhomfilesv);
+//			QuaTrinhHoc qth = new QuaTrinhHoc();
+//			qth = qthDAO.findById(idquatrinhhoc);
+			FileSinhVien fsv = new FileSinhVien(f.getOriginalFilename(), tenFileTrenServer, nfsv);
+			fsv.setThoiGianGui();
+			nfsv.setLanSuaCuoi();
+			fileSinhVienDAO.persist(fsv);
 		});
 	}
 	
 	public void deleteFileService(@RequestBody SearchObject search) {
-		fileGiaoVienDAO.delete(search);
+		fileSinhVienDAO.delete(search);
 	}
 	
-	public FileGiaoVien findByIdService(final Long id) {
-		return fileGiaoVienDAO.findById(id);
+	public FileSinhVien findByIdService(final Long id) {
+		return fileSinhVienDAO.findById(id);
 	}
 	
-	public List<FileGiaoVien> printFileService(SearchObject search) {
-		return fileGiaoVienDAO.printAllDocs(search);
+	public List<FileSinhVien> printFileService(SearchObject search) {
+		return fileSinhVienDAO.printAllDocs(search);
 	}
 }

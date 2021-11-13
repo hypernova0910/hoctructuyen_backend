@@ -37,6 +37,15 @@ public class FileSinhVien {
 	@JoinColumn (name = "idnhomfile")
 	private NhomFileSV nfsv;
 	
+	public FileSinhVien() {}
+	
+	public FileSinhVien(String tenFile, String tenFileTrenServer, NhomFileSV nfsv) {
+		this.tenFile = tenFile;
+		this.tenFileTrenServer = tenFileTrenServer;
+		this.thoiGianGui = LocalDateTime.now(ZoneId.of("Asia/Ho_Chi_Minh"));
+		this.nfsv = nfsv;
+	}
+
 	public Long getIdfilesv() {
 		return idfilesv;
 	}
