@@ -35,8 +35,8 @@ public class FileSinhVienController {
 	private FileSinhVienService fileSVService;
 	
 	@PostMapping("uploadfiles")
-	public void uploadFileController(@RequestPart("idnhomfile") Long idnhomfile, @RequestPart("files") MultipartFile[] files) throws IOException {
-		fileSVService.uploadFileService(idnhomfile, files);
+	public void uploadFileController(@RequestPart("idsinhvien") Long idsinhvien, @RequestPart("idquatrinhhoc") Long idquatrinhhoc, @RequestPart("files") MultipartFile[] files) throws IOException {
+		fileSVService.uploadFileService(idsinhvien, idquatrinhhoc, files);
 	}
 	
 	@ExceptionHandler(MaxUploadSizeExceededException.class)

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.spring.backend.common.Constants;
+import com.spring.backend.common.SearchObject;
 import com.spring.backend.model.NhomFileSV;
 import com.spring.backend.service.NhomFileSinhVienService;
 
@@ -26,13 +27,14 @@ public class NhomFileSinhVienController {
 		nhomFileSinhVienService.save(nfsv);
 	}
 	
+	//JSON truyen vao idsinhvien, idquatrinhhoc, diem
 	@PostMapping("updateNhomFileSinhVien")
-	public void updateObj(@RequestBody NhomFileSV nfsv){
-		nhomFileSinhVienService.update(nfsv);
+	public void updateObj(@RequestBody SearchObject search){
+		nhomFileSinhVienService.update(search);
 	}
 	
-	@GetMapping("getOneById/{id}")
-	public NhomFileSV getOneById(@PathVariable Long id){
-		return nhomFileSinhVienService.findByIdService(id);
+	@GetMapping("getOneById/{idsinhvien}/{idquatrinhhoc}")
+	public NhomFileSV getOneById(@PathVariable Long idsinhvien, @PathVariable Long idquatrinhhoc){
+		return nhomFileSinhVienService.findByIdService(idsinhvien, idquatrinhhoc);
 	}
 }

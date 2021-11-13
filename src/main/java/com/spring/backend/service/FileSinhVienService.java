@@ -32,7 +32,7 @@ public class FileSinhVienService {
 	@Autowired
 	NhomFileSinhVienDAO nhomFileSinhVienDAO;
 	
-	public void uploadFileService(Long idnhomfilesv, MultipartFile[] files) {
+	public void uploadFileService(Long idsinhvien, Long idquatrinhhoc, MultipartFile[] files) {
 		Arrays.asList(files).forEach(f -> {
 			String tenFileTrenServer = UUID.randomUUID() + f.getOriginalFilename();
 			String path = ("E:\\ProjectWeb\\" + tenFileTrenServer);
@@ -44,9 +44,7 @@ public class FileSinhVienService {
 				e.printStackTrace();
 			}
 			NhomFileSV nfsv = new NhomFileSV();
-			nfsv = nhomFileSinhVienDAO.findById(idnhomfilesv);
-//			QuaTrinhHoc qth = new QuaTrinhHoc();
-//			qth = qthDAO.findById(idquatrinhhoc);
+			nfsv = nhomFileSinhVienDAO.findById(idsinhvien, idquatrinhhoc);
 			FileSinhVien fsv = new FileSinhVien(f.getOriginalFilename(), tenFileTrenServer, nfsv);
 			fsv.setThoiGianGui();
 			nfsv.setLanSuaCuoi();

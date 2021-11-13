@@ -1,12 +1,21 @@
 package com.spring.backend.dao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.spring.backend.model.NhomFileSV;
+import com.spring.backend.model.NhomFileSV_;
 
 @Repository(value = "NhomFileSinhVienDAO")
 @Transactional(rollbackFor = Exception.class)
@@ -19,17 +28,17 @@ public class NhomFileSinhVienDAO {
 		entityManager.persist(nfsv);
 	}
 	
-	public NhomFileSV findById(final Long id) {
-		return entityManager.find(NhomFileSV.class, id);
+	public NhomFileSV findById(final Long idsinhvien, final Long idquatrinhhoc) {
+		CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+		CriteriaQuery<NhomFileSV> cq = cb.createQuery(NhomFileSV.class);
+		Root<NhomFileSV> nfsvRoot = cq.from(NhomFileSV.class);
+		List<Predicate> predicates = new ArrayList<>();
+		predicates.add(cb.equal(nfsvRoot.get(NhomFileSV_.sinhVien), idsinhvien));
+		predicates.add(cb.equal(nfsvRoot.get(NhomFileSV_.quaTrinhHoc), idquatrinhhoc));
+		TypedQuery<NhomFileSV> query = entityManager.createQuery(cq);
+		return query.getResultList().stream().findFirst().orElse(null);
 	}
-	
-//	public void delete(@RequestBody SearchObject search) {
-//		for (Long id : search.getListLong1()){
-//			FileSinhVien a = new FileSinhVien();
-//			a = entityManager.find(FileSinhVien.class, id);
-//			entityManager.remove(a);
-//		}
-//	}
+
 //	
 //	public List<FileSinhVien> printAllDocs(SearchObject search) {
 //		CriteriaBuilder cb = entityManager.getCriteriaBuilder();
