@@ -28,7 +28,7 @@ public class QuaTrinhHoc {
 	@Column (name = "tenquatrinh")
 	private String tenQuaTrinh;
 	
-	@Column (name = "mota")
+	@Column (name = "mota", length = 1000)
 	private String moTa;
 	
 	@Column (name = "thoigiantao")
