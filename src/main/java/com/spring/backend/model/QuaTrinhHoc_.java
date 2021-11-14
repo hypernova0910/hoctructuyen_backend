@@ -13,6 +13,7 @@ public abstract class QuaTrinhHoc_ {
 
 	public static volatile SingularAttribute<QuaTrinhHoc, Long> maquatrinh;
 	public static volatile SingularAttribute<QuaTrinhHoc, String> tenQuaTrinh;
+	public static volatile SingularAttribute<QuaTrinhHoc, String> moTa;
 	public static volatile SingularAttribute<QuaTrinhHoc, Boolean> yeuCauNopBai;
 	public static volatile SingularAttribute<QuaTrinhHoc, LocalDateTime> thoiGianTao;
 	public static volatile SingularAttribute<QuaTrinhHoc, LocalDateTime> thoiGianNop;
@@ -22,6 +23,7 @@ public abstract class QuaTrinhHoc_ {
 	
 	public static final String MAQUATRINH = "maquatrinh";
 	public static final String TENQUATRINH = "tenQuaTrinh";
+	public static final String MOTA = "moTa";
 	public static final String YEUCAUNOPBAI = "yeuCauNopBai";
 	public static final String THOIGIANTAO = "thoiGianTao";
 	public static final String THOIGIANNOP = "thoiGianNop";

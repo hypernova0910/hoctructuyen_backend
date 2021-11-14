@@ -34,6 +34,7 @@ public class QuaTrinhHocService {
 		// check if not exist -> throw excpetion
 		QuaTrinhHoc qthDb = qthDAO.findById(qth.getMaquatrinh());
 		qthDb.setTenQuaTrinh(qth.getTenQuaTrinh());
+		qthDb.setMoTa(qth.getMoTa());
 		qthDb.setYeuCauNopBai(qth.getYeuCauNopBai());
 		qthDb.setThoiGianNop(qth.getThoiGianNop());
 		qthDb.setThoiGianTao();

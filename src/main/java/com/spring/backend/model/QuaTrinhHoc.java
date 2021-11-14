@@ -28,6 +28,9 @@ public class QuaTrinhHoc {
 	@Column (name = "tenquatrinh")
 	private String tenQuaTrinh;
 	
+	@Column (name = "mota")
+	private String moTa;
+	
 	@Column (name = "thoigiantao")
 	private LocalDateTime thoiGianTao;
 
@@ -62,6 +65,14 @@ public class QuaTrinhHoc {
 
 	public void setTenQuaTrinh(String tenQuaTrinh) {
 		this.tenQuaTrinh = tenQuaTrinh;
+	}
+
+	public String getMoTa() {
+		return moTa;
+	}
+
+	public void setMoTa(String moTa) {
+		this.moTa = moTa;
 	}
 
 	public LocalDateTime getThoiGianTao() {
