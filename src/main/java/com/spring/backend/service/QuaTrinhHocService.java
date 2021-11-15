@@ -25,10 +25,11 @@ public class QuaTrinhHocService {
 	    return qthDAO.findById(id);
 	}
 	
-	public void save(final QuaTrinhHoc qth) {
+	public Long save(final QuaTrinhHoc qth) {
 	    // check if exist -> throw exception
 		qth.setThoiGianTao();
-		qthDAO.persist(qth);
+		Long saveID = qthDAO.persist(qth);
+		return saveID;
 	}
 	public void update(final QuaTrinhHoc qth) {
 		// check if not exist -> throw excpetion

@@ -37,8 +37,9 @@ public class QuaTrinhHocController {
 	}
 	
 	@PostMapping("addQuaTrinhHoc")
-	public void addObj(@RequestBody QuaTrinhHoc qth){
-		qthService.save(qth);
+	public Long addObj(@RequestBody QuaTrinhHoc qth){
+		Long saveID = qthService.save(qth);
+		return saveID;
 	}
 	
 	@PostMapping("updateQuaTrinhHoc")

@@ -27,8 +27,9 @@ public class QuaTrinhHocDAO {
 	@PersistenceContext
 	private EntityManager entityManager;
 
-	public void persist(final QuaTrinhHoc qth) {
+	public Long persist(final QuaTrinhHoc qth) {
 		entityManager.persist(qth);
+		return qth.getMaquatrinh();
 	}
 
 	public QuaTrinhHoc findById(final Long id) {
