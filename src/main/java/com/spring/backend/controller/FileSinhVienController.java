@@ -1,10 +1,13 @@
 package com.spring.backend.controller;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -53,8 +56,8 @@ public class FileSinhVienController {
 //	}
 	
 	@PostMapping("downloadfile")
-	public void downloadFileController(@RequestPart("idnhomfile") Long idnhomfile, @RequestPart("file") MultipartFile file) {
-		
+	public ResponseEntity<InputStreamResource> downloadFileController(@RequestBody SearchObject search) throws FileNotFoundException {
+		return fileSVService.downloadFileService(search);
 	}
 	
 	@PostMapping("deletefiles")

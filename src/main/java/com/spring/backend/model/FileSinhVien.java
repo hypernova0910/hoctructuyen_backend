@@ -70,6 +70,14 @@ public class FileSinhVien {
 		this.thoiGianGui = LocalDateTime.now(ZoneId.of("Asia/Ho_Chi_Minh"));
 	}
 
+	public String getTenFileTrenServer() {
+		return tenFileTrenServer;
+	}
+
+	public void setTenFileTrenServer(String tenFileTrenServer) {
+		this.tenFileTrenServer = tenFileTrenServer;
+	}
+
 	public NhomFileSV getNfsv() {
 		return nfsv;
 	}

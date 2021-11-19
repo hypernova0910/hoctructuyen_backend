@@ -1,10 +1,14 @@
 package com.spring.backend.service;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
+
+import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,8 +17,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.spring.backend.common.SearchObject;
+
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.core.io.InputStreamResource;
 import com.spring.backend.dao.FileGiaoVienDAO;
 import com.spring.backend.dao.GiaoVienDAO;
+import com.spring.backend.dao.MediaTypeDAO;
 import com.spring.backend.dao.QuaTrinhHocDAO;
 import com.spring.backend.model.FileGiaoVien;
 import com.spring.backend.model.GiaoVien;
@@ -32,6 +42,9 @@ public class FileGiaoVienService {
 	
 	@Autowired
 	QuaTrinhHocDAO qthDAO;
+	
+	@Autowired
+	private ServletContext servletContext;
 	
 	public void uploadFileService(Long idgiaovien, Long idquatrinhhoc, MultipartFile[] files) {
 		Arrays.asList(files).forEach(f -> {
@@ -52,6 +65,25 @@ public class FileGiaoVienService {
 			fgv.setThoiGianGui();
 			fileGiaoVienDAO.persist(fgv);
 		});
+	}
+	
+	public ResponseEntity<InputStreamResource> downloadFileService(SearchObject search) throws FileNotFoundException {
+		FileGiaoVien fgv = new FileGiaoVien();
+		fgv = fileGiaoVienDAO.findById(search.getLong1());
+		String path = ("E:\\ProjectWeb\\" + fgv.getTenFileTrenServer());
+		MediaType mediaType = MediaTypeDAO.getMediaTypeForFileName(servletContext, fgv.getTenFileTrenServer());
+        System.out.println("fileName: " + fgv.getTenFileTrenServer());
+        System.out.println("mediaType: " + mediaType);
+        File directFile = new File(path);
+        InputStreamResource resource = new InputStreamResource(new FileInputStream(directFile));
+        return ResponseEntity.ok()
+                // Content-Disposition
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=" + directFile.getName())
+                // Content-Type
+                .contentType(mediaType)
+                // Contet-Length
+                .contentLength(directFile.length())
+                .body(resource);
 	}
 	
 	public void deleteFileService(@RequestBody SearchObject search) {
