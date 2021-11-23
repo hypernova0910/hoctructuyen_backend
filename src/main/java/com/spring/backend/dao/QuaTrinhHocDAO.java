@@ -48,7 +48,7 @@ public class QuaTrinhHocDAO {
 		List<Predicate> predicates = new ArrayList<>();
 		predicates.add(cb.equal(quaTrinhHocRoot.get(QuaTrinhHoc_.lopHoc), search.getLong1()));
 		cq.where(predicates.toArray(new Predicate[0]));
-		cq.orderBy(cb.asc(quaTrinhHocRoot.get("thoiGianTao")));
+		cq.orderBy(cb.asc(quaTrinhHocRoot.get(QuaTrinhHoc_.thoiGianTao)));
 		TypedQuery<QuaTrinhHoc> query = entityManager.createQuery(cq);
 		return query.getResultList();
 	}

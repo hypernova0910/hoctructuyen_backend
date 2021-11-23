@@ -71,7 +71,7 @@ public class FileGiaoVienService {
 		FileGiaoVien fgv = new FileGiaoVien();
 		fgv = fileGiaoVienDAO.findById(search.getLong1());
 		String path = ("E:\\ProjectWeb\\" + fgv.getTenFileTrenServer());
-//		MediaType mediaType = MediaTypeDAO.getMediaTypeForFileName(servletContext, fgv.getTenFileTrenServer());
+		MediaType mediaType = MediaTypeDAO.getMediaTypeForFileName(servletContext, fgv.getTenFileTrenServer());
         System.out.println("fileName: " + path);
 //        System.out.println("mediaType: " + mediaType);
         File directFile = new File(path);
@@ -95,7 +95,7 @@ public class FileGiaoVienService {
         return ResponseEntity.ok()
                 .headers(header)
                 .contentLength(directFile.length())
-                .contentType(MediaType.parseMediaType("application/octet-stream"))
+                .contentType(mediaType)
                 .body(resource);
 	}
 	
