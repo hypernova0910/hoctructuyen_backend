@@ -15,9 +15,10 @@ public class NhomFileSinhVienService {
 	@Autowired
 	NhomFileSinhVienDAO nhomFileSinhVienDAO;
 	
-	public void save(final NhomFileSV nfsv) {
+	public Long save(final NhomFileSV nfsv) {
 		nfsv.setLanSuaCuoi();
-		nhomFileSinhVienDAO.persist(nfsv);
+		Long id = nhomFileSinhVienDAO.persist(nfsv);
+		return id;
 	}
 	
 	public void update(SearchObject search) {

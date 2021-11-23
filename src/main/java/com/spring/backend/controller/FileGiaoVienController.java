@@ -27,7 +27,7 @@ import com.spring.backend.common.SearchObject;
 import com.spring.backend.model.FileGiaoVien;
 import com.spring.backend.service.FileGiaoVienService;
 
-@CrossOrigin(Constants.CROSS_ORIGIN)
+@CrossOrigin(origins = {Constants.CROSS_ORIGIN, "http://localhost:4000"})
 @RestController
 @ControllerAdvice
 @RequestMapping(Constants.API_URL + "filegiaovien")

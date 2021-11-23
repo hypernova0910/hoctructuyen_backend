@@ -79,7 +79,7 @@ public class FileGiaoVienService {
         InputStreamResource resource = new InputStreamResource(new FileInputStream(directFile));
         HttpHeaders header = new HttpHeaders();
         header.add("Content-Diposition", 
-        		String.format("attachment; filename=\"%s\"", directFile.getName()));
+        		"attachment; filename=" + fgv.getTenFile());
         header.add("Cache-Control", "no-cache, no-store, must-revalidate");
         header.add("Pragma", "no-cache");
         header.add("Expires", "0");

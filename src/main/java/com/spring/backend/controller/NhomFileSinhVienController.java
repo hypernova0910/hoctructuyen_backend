@@ -23,8 +23,9 @@ public class NhomFileSinhVienController {
 	private NhomFileSinhVienService nhomFileSinhVienService;
 	
 	@PostMapping("addNhomFileSinhVien")
-	public void addobj(@RequestBody NhomFileSV nfsv) {
-		nhomFileSinhVienService.save(nfsv);
+	public Long addobj(@RequestBody NhomFileSV nfsv) {
+		Long id = nhomFileSinhVienService.save(nfsv);
+		return id;
 	}
 	
 	//JSON truyen vao idsinhvien, idquatrinhhoc, diem

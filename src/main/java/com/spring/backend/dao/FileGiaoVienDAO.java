@@ -47,8 +47,13 @@ public class FileGiaoVienDAO {
 		CriteriaQuery<FileGiaoVien> cq = cb.createQuery(FileGiaoVien.class);
 		Root<FileGiaoVien> fgvRoot = cq.from(FileGiaoVien.class);
 		List<Predicate> predicates = new ArrayList<>();
-		predicates.add(cb.equal(fgvRoot.get(FileGiaoVien_.giaoVien), search.getLong1()));
-		predicates.add(cb.equal(fgvRoot.get(FileGiaoVien_.quaTrinhHoc), search.getLong2()));
+		if(search.getLong1() != null && search.getLong1() > 0) {
+			predicates.add(cb.equal(fgvRoot.get(FileGiaoVien_.giaoVien), search.getLong1()));
+		}
+		if(search.getLong2() != null && search.getLong2() > 0) {
+			predicates.add(cb.equal(fgvRoot.get(FileGiaoVien_.quaTrinhHoc), search.getLong2()));
+		}
+		
 		cq.where(predicates.toArray(new Predicate[predicates.size()]));
 		TypedQuery<FileGiaoVien> query = entityManager.createQuery(cq);
 		return query.getResultList();

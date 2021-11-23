@@ -24,8 +24,9 @@ public class NhomFileSinhVienDAO {
 	@PersistenceContext
 	private EntityManager entityManager;
 	
-	public void persist(final NhomFileSV nfsv) {
+	public Long persist(final NhomFileSV nfsv) {
 		entityManager.persist(nfsv);
+		return nfsv.getIdnhomfile();
 	}
 	
 	public NhomFileSV findById(final Long idsinhvien, final Long idquatrinhhoc) {
@@ -35,6 +36,7 @@ public class NhomFileSinhVienDAO {
 		List<Predicate> predicates = new ArrayList<>();
 		predicates.add(cb.equal(nfsvRoot.get(NhomFileSV_.sinhVien), idsinhvien));
 		predicates.add(cb.equal(nfsvRoot.get(NhomFileSV_.quaTrinhHoc), idquatrinhhoc));
+		cq.where(predicates.toArray(new Predicate[predicates.size()]));
 		TypedQuery<NhomFileSV> query = entityManager.createQuery(cq);
 		return query.getResultList().stream().findFirst().orElse(null);
 	}
