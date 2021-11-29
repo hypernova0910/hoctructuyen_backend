@@ -1,6 +1,7 @@
 package com.spring.backend.model;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
 import javax.annotation.Generated;
 import javax.persistence.metamodel.ListAttribute;
@@ -16,7 +17,7 @@ public abstract class QuaTrinhHoc_ {
 	public static volatile SingularAttribute<QuaTrinhHoc, String> moTa;
 	public static volatile SingularAttribute<QuaTrinhHoc, Boolean> yeuCauNopBai;
 	public static volatile SingularAttribute<QuaTrinhHoc, LocalDateTime> thoiGianTao;
-	public static volatile SingularAttribute<QuaTrinhHoc, LocalDateTime> thoiGianNop;
+	public static volatile SingularAttribute<QuaTrinhHoc, Date> thoiGianNop;
 	public static volatile SingularAttribute<QuaTrinhHoc, LopHoc> lopHoc;
 	public static volatile ListAttribute<QuaTrinhHoc, FileGiaoVien> fileGiaoViens;
 	public static volatile ListAttribute<QuaTrinhHoc, NhomFileSV> nhomFileSVs;

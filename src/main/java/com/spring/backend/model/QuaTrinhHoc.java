@@ -13,6 +13,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.time.ZoneId;
+import java.time.ZoneOffset;
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.annotations.OnDelete;
@@ -21,6 +23,7 @@ import org.hibernate.annotations.OnDeleteAction;
 @Entity
 @Table (name = "quatrinhhoc")
 public class QuaTrinhHoc {
+	ZoneId idGMT = ZoneId.of("Asia/Ho_Chi_Minh");
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private Long maquatrinh;
@@ -38,7 +41,7 @@ public class QuaTrinhHoc {
 	private Boolean yeuCauNopBai;
 	
 	@Column (name = "thoigiannop")
-	private LocalDateTime thoiGianNop;
+	private Date thoiGianNop;
 	
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	@ManyToOne
@@ -91,11 +94,11 @@ public class QuaTrinhHoc {
 		this.yeuCauNopBai = yeuCauNopBai;
 	}
 
-	public LocalDateTime getThoiGianNop() {
+	public Date getThoiGianNop() {
 		return thoiGianNop;
 	}
 
-	public void setThoiGianNop(LocalDateTime thoiGianNop) {
+	public void setThoiGianNop(Date thoiGianNop) {
 		this.thoiGianNop = thoiGianNop;
 	}
 
