@@ -24,7 +24,7 @@ public class NhomFileSinhVienService {
 	public void update(SearchObject search) {
 		NhomFileSV newNFSV = nhomFileSinhVienDAO.findById(search.getLong1(), search.getLong2());
 		newNFSV.setDiem(search.getDouble1());
-		newNFSV.setLanSuaCuoi();
+//		newNFSV.setLanSuaCuoi();
 		nhomFileSinhVienDAO.persist(newNFSV);
 	}
 	
