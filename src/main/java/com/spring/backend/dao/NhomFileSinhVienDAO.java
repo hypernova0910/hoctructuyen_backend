@@ -14,6 +14,7 @@ import javax.persistence.criteria.Root;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.spring.backend.model.LopHoc;
 import com.spring.backend.model.NhomFileSV;
 import com.spring.backend.model.NhomFileSV_;
 
@@ -39,6 +40,10 @@ public class NhomFileSinhVienDAO {
 		cq.where(predicates.toArray(new Predicate[predicates.size()]));
 		TypedQuery<NhomFileSV> query = entityManager.createQuery(cq);
 		return query.getResultList().stream().findFirst().orElse(null);
+	}
+	
+	public NhomFileSV findByIdNFSV(final Long idnfsv) {
+		return entityManager.find(NhomFileSV.class, idnfsv);
 	}
 
 //	

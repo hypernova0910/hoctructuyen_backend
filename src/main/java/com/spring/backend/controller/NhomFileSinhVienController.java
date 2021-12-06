@@ -38,4 +38,9 @@ public class NhomFileSinhVienController {
 	public NhomFileSV getOneById(@PathVariable Long idsinhvien, @PathVariable Long idquatrinhhoc){
 		return nhomFileSinhVienService.findByIdService(idsinhvien, idquatrinhhoc);
 	}
+	
+	@GetMapping("getOneByIdNSFV/{idnfsv}")
+	public NhomFileSV getOneById(@PathVariable Long idnfsv){
+		return nhomFileSinhVienService.findByIdNFSV(idnfsv);
+	}
 }

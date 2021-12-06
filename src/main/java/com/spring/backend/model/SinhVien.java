@@ -1,5 +1,6 @@
 package com.spring.backend.model;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -36,6 +37,12 @@ public class SinhVien {
 	
 	@OneToMany(mappedBy="sinhVien", fetch = FetchType.LAZY, orphanRemoval = true)
 	private List<NhomFileSV> nhomFileSVs;
+	
+	private Date lansuacuoi;
+	
+	private Double diem;
+	
+	private Long idnhomfile;
 
 	public Long getMasinhvien() {
 		return masinhvien;
@@ -75,5 +82,29 @@ public class SinhVien {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public Date getLansuacuoi() {
+		return lansuacuoi;
+	}
+
+	public void setLansuacuoi(Date lansuacuoi) {
+		this.lansuacuoi = lansuacuoi;
+	}
+
+	public Double getDiem() {
+		return diem;
+	}
+
+	public void setDiem(Double diem) {
+		this.diem = diem;
+	}
+
+	public Long getIdnhomfile() {
+		return idnhomfile;
+	}
+
+	public void setIdnhomfile(Long idnhomfile) {
+		this.idnhomfile = idnhomfile;
 	}
 }

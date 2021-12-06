@@ -30,7 +30,7 @@ public class NhomFileSV {
 	private LocalDateTime lanSuaCuoi;
 	
 	@Column (name = "diem")
-	private double diem;
+	private Double diem;
 	
 	@Column (name = "nhanxet", length = 1000)
 	private String nhanXet;
@@ -74,11 +74,11 @@ public class NhomFileSV {
 		this.lanSuaCuoi = LocalDateTime.now(ZoneId.of("Asia/Ho_Chi_Minh"));
 	}
 
-	public double getDiem() {
+	public Double getDiem() {
 		return diem;
 	}
 
-	public void setDiem(double diem) {
+	public void setDiem(Double diem) {
 		this.diem = diem;
 	}
 

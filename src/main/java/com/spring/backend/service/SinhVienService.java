@@ -21,6 +21,10 @@ public class SinhVienService {
 		return svDAO.findAll(search, offset, limit);
 	}
 	
+	public List<SinhVien> findAllStatusSubmit(SearchObject search, int offset, int limit) {
+		return svDAO.findAllStatusSubmit(search, offset, limit);
+	}
+	
 	public SinhVien findById(final Long id) {
 	    return svDAO.findById(id);
 	}

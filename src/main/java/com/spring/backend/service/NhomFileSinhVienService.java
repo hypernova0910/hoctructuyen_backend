@@ -22,13 +22,18 @@ public class NhomFileSinhVienService {
 	}
 	
 	public void update(SearchObject search) {
-		NhomFileSV newNFSV = nhomFileSinhVienDAO.findById(search.getLong1(), search.getLong2());
+		NhomFileSV newNFSV = nhomFileSinhVienDAO.findByIdNFSV(search.getLong1());
 		newNFSV.setDiem(search.getDouble1());
+		newNFSV.setNhanXet(search.getString1());
 //		newNFSV.setLanSuaCuoi();
 		nhomFileSinhVienDAO.persist(newNFSV);
 	}
 	
 	public NhomFileSV findByIdService(final Long idsinhvien, final Long idquatrinhhoc) {
 		return nhomFileSinhVienDAO.findById(idsinhvien, idquatrinhhoc);
+	}
+	
+	public NhomFileSV findByIdNFSV(final Long idnfsv) {
+		return nhomFileSinhVienDAO.findByIdNFSV(idnfsv);
 	}
 }

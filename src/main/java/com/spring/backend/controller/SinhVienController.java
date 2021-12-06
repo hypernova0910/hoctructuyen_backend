@@ -29,6 +29,11 @@ public class SinhVienController {
 		return svService.findAll(search, offset, limit);
 	}
 	
+	@PostMapping("getAllStatusSubmit/{offset}/{limit}")
+	public List<SinhVien> getAllStatusSubmit(@RequestBody SearchObject search, @PathVariable int offset, @PathVariable int limit){
+		return svService.findAllStatusSubmit(search, offset, limit);
+	}
+	
 	@GetMapping("getOneById/{id}")
 	public SinhVien getOneById(@PathVariable Long id){
 		return svService.findById(id);
