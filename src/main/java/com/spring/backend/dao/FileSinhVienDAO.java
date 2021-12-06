@@ -38,6 +38,7 @@ public class FileSinhVienDAO {
 		for (Long id : search.getListLong1()){
 			FileSinhVien a = new FileSinhVien();
 			a = findById(id);
+			a.getNfsv().setLanSuaCuoi();
 			entityManager.remove(a);
 		}
 	}
