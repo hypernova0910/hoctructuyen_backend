@@ -98,12 +98,12 @@ public class LopHocDAO {
 		pre.add(cb.equal(lopHocRoot.get(LopHoc_.ky), ky));
 		pre.add(cb.equal(lopHocRoot.get(LopHoc_.namHoc), namhoc));
 	    cq.where(pre.toArray(new Predicate[pre.size()]));
-//		if (search.getLong2() == 1) {
-//			cq.orderBy(cb.asc(lopHocRoot.get(LopHoc_.ngayHoc)), cb.asc(lopHocRoot.get(LopHoc_.thoiGianBatDau)));
-//		}
-//		else {
-//			cq.orderBy(cb.asc(lopHocRoot.get(LopHoc_.tenLopHoc)));
-//		}
+		if (search.getLong2() == 1) {
+			cq.orderBy(cb.asc(lopHocRoot.get(LopHoc_.ngayHoc)), cb.asc(lopHocRoot.get(LopHoc_.thoiGianBatDau)));
+		}
+		else {
+			cq.orderBy(cb.asc(lopHocRoot.get(LopHoc_.tenLopHoc)));
+		}
 
 		TypedQuery<LopHoc> query = entityManager.createQuery(cq);
 		return query.getResultList();
@@ -118,12 +118,12 @@ public class LopHocDAO {
 	    List<Predicate> pre = new ArrayList<>();
 		pre.add(cb.equal(lopHocRoot.get(LopHoc_.giaoVien), search.getLong1()));
 	    cq.where(pre.toArray(new Predicate[pre.size()]));
-//		if (search.getLong2() == 1) {
-//			cq.orderBy(cb.asc(lopHocRoot.get(LopHoc_.ngayHoc)), cb.asc(lopHocRoot.get(LopHoc_.thoiGianBatDau)));
-//		}
-//		else {
-//			cq.orderBy(cb.asc(lopHocRoot.get(LopHoc_.tenLopHoc)));
-//		}
+		if (search.getLong2() == 1) {
+			cq.orderBy(cb.asc(lopHocRoot.get(LopHoc_.ngayHoc)), cb.asc(lopHocRoot.get(LopHoc_.thoiGianBatDau)));
+		}
+		else {
+			cq.orderBy(cb.asc(lopHocRoot.get(LopHoc_.tenLopHoc)));
+		}
 
 		TypedQuery<LopHoc> query = entityManager.createQuery(cq);
 		query.setFirstResult(offset);

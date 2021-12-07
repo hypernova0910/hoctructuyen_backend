@@ -6,7 +6,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -18,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MaxUploadSizeExceededException;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.web.servlet.view.RedirectView;
 import org.springframework.http.ResponseEntity;
 import org.springframework.core.io.InputStreamResource;
 
@@ -48,13 +46,6 @@ public class FileGiaoVienController {
 		ra.addFlashAttribute("error", "Khong the upload file lon hon " + maxFileSize);
 		return "redirect:/api/hoctructuyen/filegiaovien";
 	}
-	
-//	@ExceptionHandler(MaxUploadSizeExceededException.class)
-//	public RedirectView handleFileUploadError() {
-//		RedirectView redirectView = new RedirectView();
-//		redirectView.setUrl("http://localhost:8080/api/hoctructuyen/filegiaovien");
-//		return redirectView;
-//	}
 	
 	@PostMapping("downloadfile")
 	public ResponseEntity<InputStreamResource> downloadFileController(@RequestBody SearchObject search) throws FileNotFoundException {

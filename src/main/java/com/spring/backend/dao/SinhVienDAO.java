@@ -66,27 +66,14 @@ public class SinhVienDAO {
 	}
 	
 	public List<SinhVien> findAllStatusSubmit(SearchObject search, int offset, int limit) {
-//		CriteriaBuilder cb = entityManager.getCriteriaBuilder();
-//		CriteriaQuery<QuaTrinhHoc> cq = cb.createQuery(QuaTrinhHoc.class);
-//		Root<QuaTrinhHoc> qthRoot = cq.from(QuaTrinhHoc.class);
-//		List<Predicate> predicates = new ArrayList<>();
 		QuaTrinhHoc qth = new QuaTrinhHoc();
 		if(search.getLong2() != null && search.getLong2() > 0) {
 			qth = entityManager.find(QuaTrinhHoc.class, search.getLong2());
 		}
-//		else {
-//			query.setParameter("malophoc", 0);
-//		}
 		String sql = "SELECT sv.masinhvien, nfsv.idnhomfile, sv.email, sv.pass, sv.sdt, sv.tensinhvien, nfsv.lansuacuoi, case when nfsv.idnhomfile is null then FALSE else TRUE end as danopbai, nfsv.diem FROM sinhvien sv "
 				+ "join chitietlophoc ctlh on (ctlh.masinhvien = sv.masinhvien and ctlh.malophoc = :malophoc) "
 				+ "left join nhomfilesv nfsv on (nfsv.masinhvien = sv.masinhvien and nfsv.maquatrinh = :maquatrinh) ";
 		Query query = entityManager.createNativeQuery(sql, SinhVien.class);
-//		if(search.getLong1() != null && search.getLong1() > 0) {
-//			query.setParameter("malophoc", search.getLong1());
-//		}
-//		else {
-//			query.setParameter("malophoc", 0);
-//		}
 		if(search.getLong2() != null && search.getLong2() > 0) {
 			query.setParameter("malophoc", qth.getLopHoc().getMalophoc());
 			query.setParameter("maquatrinh", search.getLong2());
@@ -99,27 +86,7 @@ public class SinhVienDAO {
 		if(limit > 0) {
 			query.setMaxResults(limit);
 		}
-		
 		List<SinhVien> lst = query.getResultList();
 		return lst;
-//		if (search.getString1() != "") {
-//			String[] splitSearch = search.getString1().split(" ");
-//			List<Predicate> predicates = new ArrayList<>();
-//			if (splitSearch.length > 0) {
-//				for (String i : splitSearch) {
-//					Predicate p1 = cb.like(svRoot.get("tenSinhVien"), "%"+i+"%");
-//					predicates.add(p1);
-//				}
-//			}
-//			Predicate p2 = cb.or(predicates.toArray(new Predicate[predicates.size()]));
-//			cq.where(p2);
-//			TypedQuery<SinhVien> query = entityManager.createQuery(cq);
-//			query.setFirstResult(offset);
-//			query.setMaxResults(limit);
-//			return query.getResultList();
-//		}
-//		else {
-//			return null;
-//		}
 	}
 }

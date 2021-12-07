@@ -43,7 +43,7 @@ public class LopHocService {
 	}
 
 	public void update(final LopHoc lh) {
-		// check if not exist -> throw excpetion
+		// check if not exist -> throw exception
 		LopHoc newLH = lhDAO.findById(lh.getMalophoc());
 		newLH.setKy(lh.getKy());
 		newLH.setNamHoc(lh.getNamHoc());

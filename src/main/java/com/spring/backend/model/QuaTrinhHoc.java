@@ -23,7 +23,6 @@ import org.hibernate.annotations.OnDeleteAction;
 @Entity
 @Table (name = "quatrinhhoc")
 public class QuaTrinhHoc {
-	ZoneId idGMT = ZoneId.of("Asia/Ho_Chi_Minh");
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private Long maquatrinh;

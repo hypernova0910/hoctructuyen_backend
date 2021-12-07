@@ -30,7 +30,7 @@ public class GiaoVienService {
 		gvDAO.persist(gv);
 	}
 	public void update(final GiaoVien gv) {
-		// check if not exist -> throw excpetion
+		// check if not exist -> throw exception
 		GiaoVien newGV = gvDAO.findById(gv.getMagiaovien());
 		newGV.setTenGiaoVien(gv.getTenGiaoVien());
 		newGV.setSdt(gv.getSdt());
