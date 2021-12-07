@@ -27,6 +27,7 @@ public class LoginDAO {
 	@PersistenceContext
 	private EntityManager entityManager;
 	
+	//Tai khoan giao vien
 	public GiaoVien accountTeacher(SearchObject search) {
 		CriteriaBuilder cb = entityManager.getCriteriaBuilder();
 		CriteriaQuery<GiaoVien> cq = cb.createQuery(GiaoVien.class);
@@ -40,6 +41,7 @@ public class LoginDAO {
 		return query.getResultList().stream().findFirst().orElse(null);
 	}
 	
+	//Tai khoan sinh vien
 	public SinhVien accountStudent(SearchObject search) {
 		CriteriaBuilder cb = entityManager.getCriteriaBuilder();
 		CriteriaQuery<SinhVien> cq = cb.createQuery(SinhVien.class);

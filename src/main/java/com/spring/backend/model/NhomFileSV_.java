@@ -14,6 +14,7 @@ public abstract class NhomFileSV_ {
 	public static volatile SingularAttribute<NhomFileSV, Long> idnhomfile;
 	public static volatile SingularAttribute<NhomFileSV, LocalDateTime> lanSuaCuoi;
 	public static volatile SingularAttribute<NhomFileSV, Double> diem;
+	public static volatile SingularAttribute<NhomFileSV, String> nhanXet;
 	public static volatile SingularAttribute<NhomFileSV, SinhVien> sinhVien;
 	public static volatile SingularAttribute<NhomFileSV, QuaTrinhHoc> quaTrinhHoc;
 	public static volatile SetAttribute<NhomFileSV, FileSinhVien> fileSinhViens;

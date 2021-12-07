@@ -73,9 +73,7 @@ public class FileGiaoVienService {
 		String path = ("E:\\ProjectWeb\\" + fgv.getTenFileTrenServer());
 		MediaType mediaType = MediaTypeDAO.getMediaTypeForFileName(servletContext, fgv.getTenFileTrenServer());
         System.out.println("fileName: " + path);
-//        System.out.println("mediaType: " + mediaType);
         File directFile = new File(path);
-//        System.out.println("ten: " + directFile.getName());
         InputStreamResource resource = new InputStreamResource(new FileInputStream(directFile));
         HttpHeaders header = new HttpHeaders();
         header.add("Content-Diposition", 
@@ -83,15 +81,6 @@ public class FileGiaoVienService {
         header.add("Cache-Control", "no-cache, no-store, must-revalidate");
         header.add("Pragma", "no-cache");
         header.add("Expires", "0");
-//        return ResponseEntity.ok()
-//                // Content-Disposition
-//                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=" + directFile.getName())
-//                .header(HttpHeaders.CONTENT_ENCODING, "binary")
-//                // Content-Type
-//                .contentType(MediaType.APPLICATION_OCTET_STREAM)
-//                // Contet-Length
-//                .contentLength(directFile.length())
-//                .body(resource);
         return ResponseEntity.ok()
                 .headers(header)
                 .contentLength(directFile.length())

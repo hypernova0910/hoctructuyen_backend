@@ -38,7 +38,6 @@ public class QuaTrinhHocService {
 		qthDb.setMoTa(qth.getMoTa());
 		qthDb.setYeuCauNopBai(qth.getYeuCauNopBai());
 		qthDb.setThoiGianNop(qth.getThoiGianNop());
-		//qthDb.setThoiGianTao();
 		qthDAO.persist(qthDb);
 	}
 	

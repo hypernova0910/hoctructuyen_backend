@@ -45,15 +45,4 @@ public class NhomFileSinhVienDAO {
 	public NhomFileSV findByIdNFSV(final Long idnfsv) {
 		return entityManager.find(NhomFileSV.class, idnfsv);
 	}
-
-//	
-//	public List<FileSinhVien> printAllDocs(SearchObject search) {
-//		CriteriaBuilder cb = entityManager.getCriteriaBuilder();
-//		CriteriaQuery<FileSinhVien> cq = cb.createQuery(FileSinhVien.class);
-//		Root<FileSinhVien> fsvRoot = cq.from(FileSinhVien.class);
-//		List<Predicate> predicates = new ArrayList<>();
-//		predicates.add(cb.equal(fsvRoot.get(FileSinhVien_.idnhomfile), search.getLong1()));
-//		TypedQuery<FileSinhVien> query = entityManager.createQuery(cq);
-//		return query.getResultList();
-//	}
 }
