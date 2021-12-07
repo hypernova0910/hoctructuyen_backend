@@ -31,7 +31,6 @@ public class SinhVienDAO {
 	}
 
 	public SinhVien findById(final Long id) {
-		System.out.println(id);
 		return entityManager.find(SinhVien.class, id);
 	}
 
