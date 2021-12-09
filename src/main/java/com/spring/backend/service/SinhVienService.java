@@ -29,9 +29,9 @@ public class SinhVienService {
 	    return svDAO.findById(id);
 	}
 	
-	public void save(final SinhVien classInfo) {
+	public void save(final SinhVien sinhVien) {
 	    // check if exist -> throw exception
-		svDAO.persist(classInfo);
+		svDAO.persist(sinhVien);
 	}
 	public void update(final SinhVien sv) {
 		// check if not exist -> throw excpetion

@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.spring.backend.common.Constants;
 import com.spring.backend.common.SearchObject;
 
 import org.springframework.http.HttpHeaders;
@@ -49,7 +50,7 @@ public class FileGiaoVienService {
 	public void uploadFileService(Long idgiaovien, Long idquatrinhhoc, MultipartFile[] files) {
 		Arrays.asList(files).forEach(f -> {
 			String tenFileTrenServer = UUID.randomUUID() + f.getOriginalFilename();
-			String path = ("E:\\ProjectWeb\\" + tenFileTrenServer);
+			String path = (Constants.PATH_SAVE_FILE + tenFileTrenServer);
 			try {
 				f.transferTo(new File(path));
 			} catch (IllegalStateException e) {
@@ -70,7 +71,7 @@ public class FileGiaoVienService {
 	public ResponseEntity<InputStreamResource> downloadFileService(SearchObject search) throws FileNotFoundException {
 		FileGiaoVien fgv = new FileGiaoVien();
 		fgv = fileGiaoVienDAO.findById(search.getLong1());
-		String path = ("E:\\ProjectWeb\\" + fgv.getTenFileTrenServer());
+		String path = (Constants.PATH_SAVE_FILE + fgv.getTenFileTrenServer());
 		MediaType mediaType = MediaTypeDAO.getMediaTypeForFileName(servletContext, fgv.getTenFileTrenServer());
         System.out.println("fileName: " + path);
         File directFile = new File(path);

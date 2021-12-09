@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.spring.backend.common.SearchObject;
+import com.spring.backend.common.Constants;
 import com.spring.backend.dao.FileSinhVienDAO;
 import com.spring.backend.dao.MediaTypeDAO;
 import com.spring.backend.dao.NhomFileSinhVienDAO;
@@ -48,7 +49,7 @@ public class FileSinhVienService {
 	public void uploadFileService(Long idsinhvien, Long idquatrinhhoc, MultipartFile[] files) {
 		Arrays.asList(files).forEach(f -> {
 			String tenFileTrenServer = UUID.randomUUID() + f.getOriginalFilename();
-			String path = ("E:\\ProjectWeb\\" + tenFileTrenServer);
+			String path = (Constants.PATH_SAVE_FILE + tenFileTrenServer);
 			try {
 				f.transferTo(new File(path));
 			} catch (IllegalStateException e) {
@@ -68,7 +69,7 @@ public class FileSinhVienService {
 	public ResponseEntity<InputStreamResource> downloadFileService(SearchObject search) throws FileNotFoundException {
 		FileSinhVien fsv = new FileSinhVien();
 		fsv = fileSinhVienDAO.findById(search.getLong1());
-		String path = ("E:\\ProjectWeb\\" + fsv.getTenFileTrenServer());
+		String path = (Constants.PATH_SAVE_FILE + fsv.getTenFileTrenServer());
 		MediaType mediaType = MediaTypeDAO.getMediaTypeForFileName(servletContext, fsv.getTenFileTrenServer());
         System.out.println("fileName: " + fsv.getTenFileTrenServer());
         System.out.println("mediaType: " + mediaType);
